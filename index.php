@@ -27,18 +27,24 @@ if( !isset( $_POST[ 'do' ] )) {
 	</p>
 	<?php
 } else {
+// DO NOTHING
 	if( $_POST[ 'do' ] == "nothing" ) {
 		?>Nothing to do? Well, you're really on the safe side, guy!<?php
+// DO A CORE SYNC
 	} elseif( $_POST[ 'do' ] == "sync" ) {
 		?>
 		A Sync is being made:
 		<pre><?php
-		system( "wget -O - http://zeus.blogcube.net/sync/" )
+		$revstring = system( "wget -O - http://zeus.blogcube.net/sync/" );
+		logSync( $_SERVER[ 'REMOTE_USER' ], "$revstring", 112, "sync" );
 		?></pre>
 		<a href="index.php">back</a>
 		<?php
 	} elseif( $_POST[ 'do' ] == "csssync" ) {
-		logSync( $_SERVER[ 'REMOTE_USER' ], "test comment", 112, "csssync" );
+// DO A CSS SYNC
+		$revstring = exec( "svn info /var/www/zino.gr/beta/phoenix/|grep Revision" );
+		preg_match( "/Revision: (?<rev>\w+)/", $revstring, $match );
+		logSync( $_SERVER[ 'REMOTE_USER' ], "test comment", $match[ 'rev' ], "csssync" );
 		?>
 		This is not working yet :P
 		<a href="index.php">back</a>
