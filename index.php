@@ -37,7 +37,7 @@ if( !isset( $_POST[ 'do' ] )) {
 		<pre><?php
 		$revstring = system( "wget -O - http://zeus.blogcube.net/sync/" );
 		preg_match( "/revision (?<rev>\w+)./", $revstring, $match );
-		logSync( $_SERVER[ 'REMOTE_USER' ], "$revstring", $match[ 'sync' ], "sync" );
+		logSync( $_SERVER[ 'REMOTE_USER' ], "$revstring", $match[ 'rev' ], "sync" );
 		?></pre>
 		<a href="index.php">back</a>
 		<?php
