@@ -22,7 +22,7 @@ if( !isset( $_POST[ 'do' ] )) {
     <?php
     $lastSyncs = getLastSyncs();
     for( $x = 0; $x < count( $lastSyncs ); $x++ ) {
-        echo date( "c", $lastSyncs[ $x ][ 'sync_date' ] ) . " " .$lastSyncs[ $x ][ 'user_name' ] . " (" . $lastSyncs[ $x ][ 'sync_rev' ] . " - " . $lastSyncs[ $x ][ 'sync_type' ] . "): " . $lastSyncs[ $x ][ 'sync_comment' ] . "<br />";
+        echo date( "c", $lastSyncs[ $x ][ 'sync_date' ] ) . " " .$lastSyncs[ $x ][ 'user_name' ] . " (" . $lastSyncs[ $x ][ 'sync_rev' ] . " - " . $types[ $lastSyncs[ $x ][ 'sync_type' ] ] . "): " . $lastSyncs[ $x ][ 'sync_comment' ] . "<br />";
     }
     ?>
     </p>

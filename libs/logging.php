@@ -1,4 +1,8 @@
 <?php
+$types = array();
+$types[ 'sync' ] = "core";
+$types[ 'csssync' ] = "css / js";
+
 function logSync( $username, $comment, $rev, $type ) {
     $userid = getUserByName( $username );
     $sql = "INSERT INTO `sync` ( `sync_id`, `sync_userid`, `sync_comment`, `sync_date`, `sync_rev`, `sync_type`) VALUES ( NULL , '$userid', '$comment', '" . mktime() . "', '$rev', '$type' );";
@@ -8,10 +12,7 @@ function logSync( $username, $comment, $rev, $type ) {
 }
 
 function mailSync( $username, $comment, $rev, $type ) {
-	$types = array();
-	$types[ 'sync' ] = "core";
-	$types[ 'csssync' ] = "css / js";
-
+	global $types;
 	$text = $username . " synced on " . $types[ $type ] . " to revision " . $rev . "\n\nComment:\n" . $comment;
 	
 	mail( "svn@kamibu.com", "[SYNC] $username: " . $types[ $type ] . " - $rev", $text );
