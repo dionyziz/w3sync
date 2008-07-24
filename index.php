@@ -14,6 +14,7 @@ if( !isset( $_POST[ 'do' ] )) {
         <input type="radio" name="do" value="nothing" checked />Nothing<br />
         <input type="radio" name="do" value="sync" />Sync<br />
         <input type="radio" name="do" value="csssync" />CSS and JS Sync<br />
+		Comment: <textarea name="comment"></textarea><br />
 
         <input type="submit" value="Do it" />
     </form>
@@ -37,7 +38,7 @@ if( !isset( $_POST[ 'do' ] )) {
         <pre><?php
         $revstring = system( "wget -O - http://zeus.blogcube.net/sync/" );
         preg_match( "/revision (?<rev>\w+)./", $revstring, $match );
-        logSync( $_SERVER[ 'REMOTE_USER' ], "$revstring", $match[ 'rev' ], "sync" );
+        logSync( $_SERVER[ 'REMOTE_USER' ], $_POST[ 'comment' ], $match[ 'rev' ], "sync" );
         ?></pre>
         <a href="index.php">back</a>
         <?php
@@ -46,7 +47,7 @@ if( !isset( $_POST[ 'do' ] )) {
         // get current rev. this will be the rev of the new synced version
         $revstring = exec( "svn info /var/www/zino.gr/beta/phoenix/|grep Revision" );
         preg_match( "/Revision: (?<rev>\w+)/", $revstring, $match );
-        logSync( $_SERVER[ 'REMOTE_USER' ], "test comment", $match[ 'rev' ], "csssync" );
+        logSync( $_SERVER[ 'REMOTE_USER' ], $_POST[ 'comment' ], $match[ 'rev' ], "csssync" );
         // do the main syncing
         exec( "cat /var/www/zino.gr/static/css/global-beta.css > /var/www/zino.gr/static/css/global.css" );
         exec( "cat /var/www/zino.gr/static/js/global-beta.js > /var/www/zino.gr/static/js/global.js" );
