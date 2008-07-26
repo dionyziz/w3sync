@@ -1,6 +1,7 @@
 <?php
 if( !isset( $_SERVER[ 'HTTPS' ] ) ) {
-	header( "301 Moved Permanently\nLocation: https://code.kamibu.com/sync/" );
+	header( "301 Moved Permanently" );
+	header( "Location: https://code.kamibu.com/sync/" );
 	die();
 }
 ?>
