@@ -1,6 +1,7 @@
 <?php
 if( !isset( $_SERVER[ 'HTTPS' ] ) ) {
-	die( "https required" );
+	header( "301 Moved Permanently\nLocation: https://code.kamibu.com/sync/" );
+	die();
 }
 ?>
 <html>
