@@ -1,3 +1,8 @@
+<?php
+if( !isset( $_SERVER[ 'HTTPS' ] ) ) {
+	die( "https required" );
+}
+?>
 <html>
 <head>
 <title>Kamibu Sync Services</title>
@@ -37,6 +42,8 @@ if( !isset( $_POST[ 'do' ] )) {
         A Sync is being made:
         <pre><?php
         $revstring = system( "wget -O - http://zeus.blogcube.net/sync/" );
+		// exec( 'baz', $foo );
+		// echo implode( "\n", $foo );
         preg_match( "/revision (?<rev>\w+)./", $revstring, $match );
         logSync( $_SERVER[ 'REMOTE_USER' ], $_POST[ 'comment' ], $match[ 'rev' ], "sync" );
         ?></pre>
