@@ -20,6 +20,7 @@ if( !isset( $_POST[ 'do' ] )) {
     <form method="POST" action="index.php">
         <input type="radio" name="do" value="nothing" checked />Nothing<br />
         <input type="radio" name="do" value="sync" />Sync<br />
+		<input type="radio" name="do" value="beta" />Beta Sync (fast for the user - might be broken)<br />
         <input type="radio" name="do" value="csssync" />CSS and JS Sync<br />
 		Comment: <textarea name="comment"></textarea><br />
 
@@ -47,6 +48,22 @@ if( !isset( $_POST[ 'do' ] )) {
 	        A Sync is being made:
 	        <pre><?php
 	        $revstring = system( "wget -O - http://zeus.blogcube.net/sync/" );
+			// exec( 'baz', $foo );
+			// echo implode( "\n", $foo );
+	        preg_match( "/revision (?<rev>\w+)./", $revstring, $match );
+	        logSync( $_SERVER[ 'REMOTE_USER' ], $_POST[ 'comment' ], $match[ 'rev' ], "sync" );
+	        ?></pre>
+	        <a href="index.php">back</a>
+	        <?php
+		}
+	} elseif( $_POST[ 'do' ] == "beta" ) {
+		if( !isset( $_POST[ 'comment' ] ) ) {
+			echo "<p>A comment is required. No sync made.</p>";
+		} else {
+	        ?>
+	        A Sync is being made:
+	        <pre><?php
+	        $revstring = system( "wget -O - http://zeus.blogcube.net/sync/beta.php" );
 			// exec( 'baz', $foo );
 			// echo implode( "\n", $foo );
 	        preg_match( "/revision (?<rev>\w+)./", $revstring, $match );
