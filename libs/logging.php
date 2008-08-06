@@ -15,7 +15,7 @@ function mailSync( $username, $comment, $rev, $type ) {
 	global $types;
 	$text = $username . " synced on " . $types[ $type ] . " to revision " . $rev . "\n\nComment:\n" . $comment;
 	
-	mail( "svn@kamibu.com", "[SYNC] $username: " . $types[ $type ] . " - $rev", $text );
+	mail( "$username@kamibu.com", "[SYNC] " . $types[ $type ] . " - $rev - $comment", $text );
 }
 
 function getLastSyncs() {
