@@ -26,8 +26,13 @@
     <h2>Last syncs</h2><?php
     $lastSyncs = getLastSyncs();
     ?><table><thead><tr><td>Revision</td><td>Developer</td><td>Type</td><td>Reason</td><td>Date</td></tr></thead><tbody><?php
+    $i = 0;
     foreach ( $lastSyncs as $sync ) {
-        ?><tr><td><?php
+        ?><tr<?php
+        if ( $i % 2 == 0 ) {
+            ?> class="l"<?php
+        }
+        ?>><td><?php
         echo $sync[ 'sync_rev' ];
         ?></td><td><?php
         if ( empty( $sync[ 'user_name' ] ) ) {
@@ -47,6 +52,7 @@
         ?></td><td><?php
         echo date( "r", $sync[ 'sync_date' ] );
         ?></td></tr><?php
+        ++$i;
     }
     ?></tbody></table><?php
 
