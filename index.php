@@ -8,12 +8,11 @@
     }
 
     ?>
+    <div class="username"><?php
+    echo htmlspecialchars( $_SERVER[ 'REMOTE_USER' ] );
+    ?>@kamibu.com</div>
     <h1>Deploy Zino</h1>
-    Greetings fellow zino hacker, <?php
-    echo $_SERVER[ 'REMOTE_USER' ];
-    ?>!<br />
     What do you want to do?
-    <p class="caution">All actions performed in this page get logged. Your actions are not undoable and affect the production environment directly.</p>
     <form method="POST" action="sync.php">
         <input type="radio" name="do" value="sync" />Sync<br />
         <!-- <input type="radio" name="do" value="beta" />Beta Sync (fast for the user - might be broken)<br /> -->
@@ -30,11 +29,18 @@
     foreach ( $lastSyncs as $sync ) {
         ?><tr><td><?php
         echo $sync[ 'sync_rev' ];
-        ?></td><td><a href="mailto:<?php
-        echo $sync[ 'user_name' ];
-        ?>@kamibu.com"><?php
-        echo $sync[ 'user_name' ];
-        ?></a></td><td><?php
+        ?></td><td><?php
+        if ( empty( $sync[ 'user_name' ] ) ) {
+            ?>(unknown)<?php
+        }
+        else { 
+            ?><a href="mailto:<?php
+            echo $sync[ 'user_name' ];
+            ?>@kamibu.com"><?php
+            echo $sync[ 'user_name' ];
+            ?></a><?php
+        }
+        ?></td><td><?php
         echo $sync[ 'sync_type' ];
         ?></td><td><?php
         echo $sync[ 'sync_comment' ];
