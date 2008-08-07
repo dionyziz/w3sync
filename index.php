@@ -9,7 +9,7 @@
 
     ?>
     <h1>Deploy Zino</h1>
-    Greeting fellow zino hacker, <?php
+    Greetings fellow zino hacker, <?php
     echo $_SERVER[ 'REMOTE_USER' ];
     ?>!<br />
     What do you want to do?
@@ -30,9 +30,11 @@
     foreach ( $lastSyncs as $sync ) {
         ?><tr><td><?php
         echo date( "r", $sync[ 'sync_date' ] );
-        ?></td><td><?php
+        ?></td><td><a href="mailto:<?php
         echo $sync[ 'user_name' ];
-        ?></td><td><?php
+        ?>@kamibu.com"><?php
+        echo $sync[ 'user_name' ];
+        ?></a></td><td><?php
         echo $sync[ 'sync_rev' ];
         ?></td><td><?php
         echo $sync[ 'sync_type' ];

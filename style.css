@@ -2,16 +2,36 @@ body {
     font-family: Verdana, "Trebuchet MS", Helvetica;
 }
 table {
-    width: 80%;
+    width: 100%;
     border: 1px solid #666;
+}
+textarea {
+    margin: 5px;
+    width: 100%;
+    height: 50px;
 }
 table thead tr td {
     font-weight: bold;
 }
 table thead tr {
     border: 1px solid #333;
+    background-color: #eee;
 }
-table tbody tr td {
+table tbody td {
     padding: 5px;
-    border: 1px solid #eee;
 }
+table tbody tr {
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+h2 {
+    font-size: 130%;
+    color: #666;
+    text-align: left;
+}
+h3 {
+    font-size: 105%;
+    color: #666;
+    text-align: left;
+}
+
