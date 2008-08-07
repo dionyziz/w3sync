@@ -14,7 +14,7 @@
     <h1>Deploy Zino</h1>
     What do you want to do?
     <form method="POST" action="sync.php">
-        <input type="radio" name="do" value="sync" />Sync<br />
+        <input type="radio" name="do" value="sync" checked="checked" />Sync<br />
         <!-- <input type="radio" name="do" value="beta" />Beta Sync (fast for the user - might be broken)<br /> -->
         <input type="radio" name="do" value="csssync" />CSS and JS Sync<br />
         <br />
