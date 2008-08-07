@@ -1,0 +1,17 @@
+body {
+    font-family: Verdana, "Trebuchet MS", Helvetica;
+}
+table {
+    width: 80%;
+    border: 1px solid #666;
+}
+table thead tr td {
+    font-weight: bold;
+}
+table thead tr {
+    border: 1px solid #333;
+}
+table tbody tr td {
+    padding: 5px;
+    border: 1px solid #eee;
+}
