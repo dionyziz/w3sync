@@ -1,5 +1,9 @@
-html, body, div.content {
+html, body {
     width: 100%;
+}
+div.content {
+    width: 99%;
+    margin: 5px;
 }
 body {
     font-family: Verdana, "Trebuchet MS", Helvetica;
