@@ -1,96 +1,46 @@
 <?php
-if( !isset( $_SERVER[ 'HTTPS' ] ) ) {
-	header( "301 Moved Permanently" );
-	header( "Location: https://code.kamibu.com/sync/" );
-	die();
-}
-?>
-<html>
-<head>
-<title>Kamibu Sync Services</title>
-</head>
-<body>
-<?php
-include( "libs/functions.php" );
-if( !isset( $_POST[ 'do' ] )) {
-    ?>
-    Hey <?php echo $_SERVER['REMOTE_USER'] ?>!<br />
-    What do you want to do?
-    <p style="color: red;">Take care:<br />Every action on this page is being made directly without a second click on 'yes'. All actions got logged.</p>
-    <form method="POST" action="index.php">
-        <input type="radio" name="do" value="nothing" checked />Nothing<br />
-        <input type="radio" name="do" value="sync" />Sync<br />
-		<input type="radio" name="do" value="beta" />Beta Sync (fast for the user - might be broken)<br />
-        <input type="radio" name="do" value="csssync" />CSS and JS Sync<br />
-		Comment: <textarea name="comment"></textarea><br />
+    include "header.php";
 
-        <input type="submit" value="Do it" />
-    </form>
-    <p>Last syncs:<br />
-    <?php
-    $lastSyncs = getLastSyncs();
-    for( $x = 0; $x < count( $lastSyncs ); $x++ ) {
-        echo date( "c", $lastSyncs[ $x ][ 'sync_date' ] ) . " " .$lastSyncs[ $x ][ 'user_name' ] . " (" . $lastSyncs[ $x ][ 'sync_rev' ] . " - " . $types[ $lastSyncs[ $x ][ 'sync_type' ] ] . "): " . $lastSyncs[ $x ][ 'sync_comment' ] . "<br />";
+    if( !isset( $_SERVER[ 'HTTPS' ] ) ) {
+        header( "301 Moved Permanently" );
+        header( "Location: https://code.kamibu.com/sync/" );
+        die();
     }
+
     ?>
-    </p>
-    <?php
-} else {
-// DO NOTHING
-    if( $_POST[ 'do' ] == "nothing" ) {
-        ?>Nothing to do? Well, you're really on the safe side, guy!<?php
-// DO A CORE SYNC
-    } elseif( $_POST[ 'do' ] == "sync" ) {
-		if( !isset( $_POST[ 'comment' ] ) ) {
-			echo "<p>A comment is required. No sync made.</p>";
-		} else {
-	        ?>
-	        A Sync is being made:
-	        <pre><?php
-	        $revstring = system( "wget -O - http://zeus.blogcube.net/sync/" );
-			// exec( 'baz', $foo );
-			// echo implode( "\n", $foo );
-	        preg_match( "/revision (?<rev>\w+)./", $revstring, $match );
-	        logSync( $_SERVER[ 'REMOTE_USER' ], $_POST[ 'comment' ], $match[ 'rev' ], "sync" );
-	        ?></pre>
-	        <a href="index.php">back</a>
-	        <?php
-		}
-	} elseif( $_POST[ 'do' ] == "beta" ) {
-		if( !isset( $_POST[ 'comment' ] ) ) {
-			echo "<p>A comment is required. No sync made.</p>";
-		} else {
-	        ?>
-	        A Sync is being made:
-	        <pre><?php
-	        $revstring = system( "wget -O - http://zeus.blogcube.net/sync/beta.php" );
-			// exec( 'baz', $foo );
-			// echo implode( "\n", $foo );
-	        preg_match( "/revision (?<rev>\w+)./", $revstring, $match );
-	        logSync( $_SERVER[ 'REMOTE_USER' ], $_POST[ 'comment' ], $match[ 'rev' ], "sync" );
-	        ?></pre>
-	        <a href="index.php">back</a>
-	        <?php
-		}
-    } elseif( $_POST[ 'do' ] == "csssync" ) {
-// DO A CSS SYNC
-		if( !isset( $_POST[ 'comment' ] ) ) {
-			echo "<p>A comment is required. No sync made.</p>";
-		} else {
-	        // get current rev. this will be the rev of the new synced version
-	        $revstring = exec( "svn info /var/www/zino.gr/beta/phoenix/|grep Revision" );
-	        preg_match( "/Revision: (?<rev>\w+)/", $revstring, $match );
-	        logSync( $_SERVER[ 'REMOTE_USER' ], $_POST[ 'comment' ], $match[ 'rev' ], "csssync" );
-	        // do the main syncing
-	        exec( "cat /var/www/zino.gr/static/css/global-beta.css > /var/www/zino.gr/static/css/global.css" );
-	        exec( "cat /var/www/zino.gr/static/js/global-beta.js > /var/www/zino.gr/static/js/global.js" );
-	        ?>
-	        You successfully synced to revision <?php echo $match[ 'rev' ]; ?>.
-	        <a href="index.php">back</a>
-	        <?php
-		}
+    <h1>Deploy Zino</h1>
+    Greeting fellow zino hacker, <?php
+    echo $_SERVER[ 'REMOTE_USER' ];
+    ?>!<br />
+    What do you want to do?
+    <p class="caution">All actions performed in this page get logged. Your actions are not undoable and affect the production environment directly.</p>
+    <form method="POST" action="sync.php">
+        <input type="radio" name="do" value="sync" />Sync<br />
+        <!-- <input type="radio" name="do" value="beta" />Beta Sync (fast for the user - might be broken)<br /> -->
+        <input type="radio" name="do" value="csssync" />CSS and JS Sync<br />
+        <br />
+        Comment (required): <br />
+        <textarea name="comment"></textarea><br />
+
+        <input type="submit" value="Deploy to Production" />
+    </form>
+    <h2>Last syncs</h2><?php
+    $lastSyncs = getLastSyncs();
+    ?><table><thead><tr><td>Date</td><td>Developer</td><td>Revision</td><td>Type</td><td>Reason</td></tr></thead><tbody><?php
+    foreach ( $lastSyncs as $sync ) {
+        ?><tr><td><?php
+        echo date( "r", $sync[ 'sync_date' ] );
+        ?></td><td><?php
+        echo $sync[ 'user_name' ];
+        ?></td><td><?php
+        echo $sync[ 'sync_rev' ];
+        ?></td><td><?php
+        echo $sync[ 'sync_type' ];
+        ?></td><td><?php
+        echo $sync[ 'sync_comment' ];
+        ?></td></tr><?php
     }
-}
+    ?></tbody></table><?php
+
+    include 'footer.php';
 ?>
-</body>
-</html>
