@@ -11,13 +11,16 @@ body {
 }
 div.content {
     width: 99%;
-    margin: 5px;
+    margin: 15px;
 }
 div.username {
     position: absolute;
     right: 10px;
     top: 10px;
     font-weight: bold;
+}
+form {
+    margin-top: 5px;
 }
 table {
     width: 100%;
