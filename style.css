@@ -1,5 +1,7 @@
 html, body {
     width: 100%;
+    margin: 0;
+    padding: 0;
 }
 div.content {
     width: 99%;
@@ -7,6 +9,7 @@ div.content {
 }
 body {
     font-family: Verdana, "Trebuchet MS", Helvetica;
+    width: 99%;
     margin: 0;
 }
 table {
@@ -26,7 +29,7 @@ table thead tr {
     border: 1px solid #333;
     background-color: #eee;
 }
-table tbody td {
+table td {
     padding: 5px;
 }
 table tbody tr {
