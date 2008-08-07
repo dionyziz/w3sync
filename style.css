@@ -1,9 +1,14 @@
+html, body, div.content {
+    width: 100%;
+}
 body {
     font-family: Verdana, "Trebuchet MS", Helvetica;
+    margin: 0;
 }
 table {
     width: 100%;
     border: 1px solid #666;
+    border-collapse: collapse;
 }
 textarea {
     margin: 5px;
@@ -24,9 +29,16 @@ table tbody tr {
     border-top: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
 }
+h1 {
+    font-size: 150%;
+    font-weight: normal;
+    text-align: left;
+    color: #666;
+}
 h2 {
     font-size: 130%;
     color: #666;
+    font-weight: normal;
     text-align: left;
 }
 h3 {

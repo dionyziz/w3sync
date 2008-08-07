@@ -11,3 +11,4 @@
         <link type="text/css" rel="stylesheet" href="style.css" />
     </head>
     <body>
+        <div class="content">
