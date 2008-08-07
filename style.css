@@ -3,20 +3,21 @@ html, body {
     margin: 0;
     padding: 0;
 }
+body {
+    font-family: Verdana, "Trebuchet MS", Helvetica;
+    width: 99%;
+    margin: 0;
+    font-size: 90%;
+}
 div.content {
     width: 99%;
     margin: 5px;
 }
 div.username {
     position: absolute;
-    right: 5px;
-    top: 5px;
+    right: 10px;
+    top: 10px;
     font-weight: bold;
-}
-body {
-    font-family: Verdana, "Trebuchet MS", Helvetica;
-    width: 99%;
-    margin: 0;
 }
 table {
     width: 100%;
