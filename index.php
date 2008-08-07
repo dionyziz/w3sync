@@ -26,20 +26,20 @@
     </form>
     <h2>Last syncs</h2><?php
     $lastSyncs = getLastSyncs();
-    ?><table><thead><tr><td>Date</td><td>Developer</td><td>Revision</td><td>Type</td><td>Reason</td></tr></thead><tbody><?php
+    ?><table><thead><tr><td>Revision</td><td>Developer</td><td>Type</td><td>Reason</td><td>Date</td></tr></thead><tbody><?php
     foreach ( $lastSyncs as $sync ) {
         ?><tr><td><?php
-        echo date( "r", $sync[ 'sync_date' ] );
+        echo $sync[ 'sync_rev' ];
         ?></td><td><a href="mailto:<?php
         echo $sync[ 'user_name' ];
         ?>@kamibu.com"><?php
         echo $sync[ 'user_name' ];
         ?></a></td><td><?php
-        echo $sync[ 'sync_rev' ];
-        ?></td><td><?php
         echo $sync[ 'sync_type' ];
         ?></td><td><?php
         echo $sync[ 'sync_comment' ];
+        ?></td><td><?php
+        echo date( "r", $sync[ 'sync_date' ] );
         ?></td></tr><?php
     }
     ?></tbody></table><?php
