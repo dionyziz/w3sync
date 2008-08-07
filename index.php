@@ -26,7 +26,7 @@
     <h2>Last syncs</h2><?php
     $lastSyncs = getLastSyncs();
     ?><table><thead><tr><td>Revision</td><td>Developer</td><td>Type</td><td>Reason</td><td>Date</td></tr></thead><tbody><?php
-    $i = 0;
+    $i = 1;
     foreach ( $lastSyncs as $sync ) {
         ?><tr<?php
         if ( $i % 2 == 0 ) {
