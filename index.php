@@ -3,12 +3,12 @@
 
     ?> What do you want to do?
     <form method="POST" action="sync.php">
-        <input type="radio" name="do" value="sync" checked="checked" />Sync<br />
+        <input type="radio" name="do" value="sync" checked="checked" id="sync" /><label for="sync">Sync</label><br />
         <!-- <input type="radio" name="do" value="beta" />Beta Sync (fast for the user - might be broken)<br /> -->
-        <input type="radio" name="do" value="csssync" />CSS and JS Sync<br />
+        <input type="radio" name="do" value="csssync" id="csssync" /><label for="csssync">CSS and JS Sync</label><br />
         <br />
         Comment (required): <br />
-        <textarea name="comment"></textarea><br />
+        <textarea name="comment" tabindex="1"></textarea><br />
 
         <input type="submit" value="Deploy to Production" />
     </form>
