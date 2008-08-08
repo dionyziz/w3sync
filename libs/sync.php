@@ -15,8 +15,8 @@
         preg_match( "/Revision: (?<rev>\w+)/", $revstring, $match );
         $revision = $match[ 'rev' ];
 
-        exec( "diff /var/www/zino.gr/static/css/global-beta.css /var/www/zino.gr/static/css/global.css", $output, $ret );
-        exec( "diff /var/www/zino.gr/static/css/global-beta.js /var/www/zino.gr/static/css/global.js", $output, $ret );
+        exec( "diff /var/www/zino.gr/static/css/global.css /var/www/zino.gr/static/css/global-beta.css", $output, $ret );
+        exec( "diff /var/www/zino.gr/static/css/global.js /var/www/zino.gr/static/css/global-beta.js", $output, $ret );
 
         exec( "cat /var/www/zino.gr/static/css/global-beta.css > /var/www/zino.gr/static/css/global.css" );
         exec( "cat /var/www/zino.gr/static/js/global-beta.js > /var/www/zino.gr/static/js/global.js" );
