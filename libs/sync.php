@@ -18,6 +18,9 @@
         exec( "diff /var/www/zino.gr/static/css/global-bete.css /var/www/zino.gr/static/css/global.css", $output, $ret );
         exec( "diff /var/www/zino.gr/static/css/global-beta.js /var/www/zino.gr/static/css/global.js", $output, $ret );
 
+        var_dump( $output );
+        die();
+
         exec( "cat /var/www/zino.gr/static/css/global-beta.css > /var/www/zino.gr/static/css/global.css" );
         exec( "cat /var/www/zino.gr/static/js/global-beta.js > /var/www/zino.gr/static/js/global.js" );
 
