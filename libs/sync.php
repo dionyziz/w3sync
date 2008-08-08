@@ -18,8 +18,8 @@
         exec( "diff /var/www/zino.gr/static/css/global.css /var/www/zino.gr/static/css/global-beta.css", $output, $ret );
         exec( "diff /var/www/zino.gr/static/css/global.js /var/www/zino.gr/static/css/global-beta.js", $output, $ret );
 
-        exec( "cat /var/www/zino.gr/static/css/global-beta.css > /var/www/zino.gr/static/css/global.css" );
-        exec( "cat /var/www/zino.gr/static/js/global-beta.js > /var/www/zino.gr/static/js/global.js" );
+        exec( "/var/www/zino.gr/beta/phoenix/etc/generate-static.php production /var/www/zino.gr/beta/phoenix/css > /var/www/zino.gr/static/css/global.css" );
+        exec( "/var/www/zino.gr/beta/phoenix/etc/generate-static.php production /var/www/zino.gr/beta/phoenix/js|/srv/svn/jsmin > /var/www/zino.gr/static/js/global.js" );
 
         $data = implode( "\n", $output );
         $data .= "\nGenerated global.css and global.js revision " . $revision . ".\n";
