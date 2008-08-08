@@ -30,7 +30,11 @@
             break;
         case 'csssync':
 	        // do the main syncing
+            ?>
+            A Static Sync is being made:
+            <pre><?php
             echo StaticSync( 0, $_SERVER[ 'REMOTE_USER' ], $_POST[ 'comment' ] );
+            ?></pre><?php
             break;
         default:
             ?><p>Invalid option</p><?php
