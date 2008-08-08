@@ -7,7 +7,6 @@
     <div class="username"><?php
     echo htmlspecialchars( $_SERVER[ 'REMOTE_USER' ] );
     ?>@kamibu.com</div>
-    <h1>Deploy Zino</h1>
     <h2>Sync #<?php
     echo $syncid;
     ?></h2><?php
