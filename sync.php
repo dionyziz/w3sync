@@ -35,5 +35,4 @@
         default:
             ?><p>Invalid option</p><?php
     }
-    ?><a href="index.php">back</a><?php
 ?>

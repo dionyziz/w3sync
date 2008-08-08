@@ -18,3 +18,7 @@
     </head>
     <body>
         <div class="content">
+            <div class="username"><?php
+            echo htmlspecialchars( $_SERVER[ 'REMOTE_USER' ] );
+            ?>@kamibu.com</div>
+            <h1><a href="index.php">Deploy Zino</a></h1>

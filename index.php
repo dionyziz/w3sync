@@ -1,11 +1,7 @@
 <?php
     include "header.php";
-    ?>
-    <div class="username"><?php
-    echo htmlspecialchars( $_SERVER[ 'REMOTE_USER' ] );
-    ?>@kamibu.com</div>
-    <h1>Deploy Zino</h1>
-    What do you want to do?
+
+    ?> What do you want to do?
     <form method="POST" action="sync.php">
         <input type="radio" name="do" value="sync" checked="checked" />Sync<br />
         <!-- <input type="radio" name="do" value="beta" />Beta Sync (fast for the user - might be broken)<br /> -->
