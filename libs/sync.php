@@ -16,6 +16,7 @@
         $revision = $match[ 'rev' ];
 
         exec( "diff /var/www/zino.gr/static/css/global-bete.css /var/www/zino.gr/static/css/global.css", $output, $ret );
+        var_dump( $output );
         exec( "diff /var/www/zino.gr/static/css/global-beta.js /var/www/zino.gr/static/css/global.js", $output, $ret );
 
         var_dump( $output );
