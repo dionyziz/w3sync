@@ -1,11 +1,11 @@
 <?php
-    include "header.php";
-
     if( !isset( $_SERVER[ 'HTTPS' ] ) ) {
         header( "301 Moved Permanently" );
         header( "Location: https://code.kamibu.com/sync/" );
         die();
     }
+
+    include "header.php";
 
     ?>
     <div class="username"><?php

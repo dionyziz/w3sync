@@ -15,12 +15,11 @@
             ?>
             A Sync is being made:
             <pre><?php
-            $revstring = system( "wget -O - http://zeus.blogcube.net/sync/" );
-            preg_match( "/revision (?<rev>\w+)./", $revstring, $match );
-            logSync( $_SERVER[ 'REMOTE_USER' ], $_POST[ 'comment' ], $match[ 'rev' ], "sync" );
+            echo Sync( 0, $_SERVER[ 'REMOTE_USER' ], $_POST[ 'comment' ]);
             ?></pre><?php
             break;
         case 'beta':
+            // TODO
 	        ?>
 	        A Sync is being made:
 	        <pre><?php
@@ -30,13 +29,8 @@
 	        ?></pre><?php
             break;
         case 'csssync':
-	        // get current rev. this will be the rev of the new synced version
-	        $revstring = exec( "svn info /var/www/zino.gr/beta/phoenix/|grep Revision" );
-	        preg_match( "/Revision: (?<rev>\w+)/", $revstring, $match );
-	        logSync( $_SERVER[ 'REMOTE_USER' ], $_POST[ 'comment' ], $match[ 'rev' ], "csssync" );
 	        // do the main syncing
-	        exec( "cat /var/www/zino.gr/static/css/global-beta.css > /var/www/zino.gr/static/css/global.css" );
-	        exec( "cat /var/www/zino.gr/static/js/global-beta.js > /var/www/zino.gr/static/js/global.js" );
+            StaticSync( 0, $_SERVER[ 'REMOTE_USER' ], $_POST[ 'comment' ] );
 	        ?>
 	        You successfully synced to revision <?php
             echo $match[ 'rev' ];
