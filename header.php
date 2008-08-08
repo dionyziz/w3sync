@@ -5,6 +5,8 @@
         die();
     }
 
+    magicquotes_off();
+
     include "libs/functions.php";
 
     echo '<?xml version="1.0" encoding="utf-8"?>';
