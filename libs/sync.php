@@ -30,11 +30,10 @@
     function getSyncInfo( $syncid ) {
         $syncid = ( int )$syncid;
         $res = mysql_query( "SELECT * FROM `sync` LEFT JOIN `users` ON `sync_userid` = `user_id` WHERE `sync_id` = " . $syncid . " LIMIT 1;" );
-        $ret = array();
-        while ( $row = mysql_fetch_array( $res ) ) {
-            $ret[] = $row;
+        if ( !mysql_num_rows( $res ) ) {
+            return false;
         }
-        return $ret;
+        return mysql_fetch_array( $res );
     }
 
 ?>
