@@ -10,6 +10,9 @@
         return;
     }
 
+    var_dump( $_POST[ 'comment' ] );
+    die(); 
+
     switch ( $_POST[ 'do' ] ) {
         case 'sync':
             ?>
