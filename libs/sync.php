@@ -22,7 +22,7 @@
         exec( "cat /var/www/zino.gr/static/js/global-beta.js > /var/www/zino.gr/static/js/global.js" );
 
         $data = implode( "\n", $output );
-        $data .= "\nGenerated global.css and global.js revision " . $revision . "\n";
+        $data .= "\nGenerated global.css and global.js revision " . $revision . ".\n";
         logSync( $username, $comment, $match[ 'rev' ], "csssync", $data );
 
         return $data;
