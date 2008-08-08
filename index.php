@@ -3,13 +3,16 @@
 
     ?> What do you want to do?
     <form method="POST" action="sync.php">
-        <input type="radio" name="do" value="sync" checked="checked" id="sync" /><label for="sync">Sync</label><br />
+        <input type="radio" name="do" value="sync" checked="checked" id="sync" onchange="document.getElementById( 'comment' ).focus()" /><label for="sync">Sync</label><br />
         <!-- <input type="radio" name="do" value="beta" />Beta Sync (fast for the user - might be broken)<br /> -->
-        <input type="radio" name="do" value="csssync" id="csssync" /><label for="csssync">CSS and JS Sync</label><br />
+        <input type="radio" name="do" value="csssync" id="csssync" onchange="document.getElementById( 'comment' ).focus()" /><label for="csssync">CSS and JS Sync</label><br />
         <br />
         Comment (required): <br />
-        <textarea name="comment" tabindex="1"></textarea><br />
+        <textarea name="comment" id="comment"></textarea><br />
 
+        <script type="text/javascript">
+            document.getElementById( 'comment' ).focus();
+        </script>
         <input type="submit" value="Deploy to Production" />
     </form>
     <h2>Last syncs</h2><?php
