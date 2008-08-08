@@ -25,7 +25,7 @@
         if ( $i % 2 == 0 ) {
             ?> class="l"<?php
         }
-        ?>><td><a href="info.php?id=<?php
+        ?>><td><a href="info.php?syncid=<?php
         echo $sync[ 'sync_id' ];
         ?>"><?php
         echo $sync[ 'sync_rev' ];
