@@ -9,6 +9,7 @@
     function logSync( $username, $comment, $rev, $type, $diff ) {
         global $types;
 
+        mailSync( $username, $comment, $rev, $type, $diff );
         if ( !isset( $types[ $type ] ) ) {
             return;
         }
@@ -19,8 +20,6 @@
                 ( `sync_id`, `sync_userid`, `sync_comment`, `sync_date`, `sync_rev`, `sync_type`, `sync_diff` ) VALUES
                 ( NULL , '$userid', '$comment', '" . mktime() . "', '$rev', '$type', '$diff' );";
         mysql_query( $sql );
-        
-        mailSync( $username, $comment, $rev, $type, $diff );
     }
 
     function mailSync( $username, $comment, $rev, $type, $diff ) {
