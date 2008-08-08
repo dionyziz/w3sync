@@ -3,9 +3,9 @@
 
     ?> What do you want to do?
     <form method="POST" action="sync.php">
-        <input type="radio" name="do" value="sync" checked="checked" id="sync" onchange="document.getElementById( 'comment' ).focus()" /><label for="sync">Sync</label><br />
+        <input type="radio" name="do" value="sync" checked="checked" id="sync" onchange="document.getElementById( 'comment' ).focus();document.getElementById( 'comment' ).select()" /><label for="sync">Sync</label><br />
         <!-- <input type="radio" name="do" value="beta" />Beta Sync (fast for the user - might be broken)<br /> -->
-        <input type="radio" name="do" value="csssync" id="csssync" onchange="document.getElementById( 'comment' ).focus()" /><label for="csssync">CSS and JS Sync</label><br />
+        <input type="radio" name="do" value="csssync" id="csssync" onchange="document.getElementById( 'comment' ).focus();document.getElementById( 'comment' ).select()" /><label for="csssync">CSS and JS Sync</label><br />
         <br />
         Comment (required): <br />
         <textarea name="comment" id="comment"></textarea><br />
