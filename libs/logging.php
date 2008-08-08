@@ -14,9 +14,10 @@
         }
         $userid = getUserByName( $username );
         $comment = mysql_real_escape_string( $comment );
+        $diff = mysql_real_escape_string( $diff );
         $sql = "INSERT INTO `sync`
                 ( `sync_id`, `sync_userid`, `sync_comment`, `sync_date`, `sync_rev`, `sync_type`, `sync_diff` ) VALUES
-                ( NULL , '$userid', '$comment', '" . mktime() . "', '$rev', '$type' );";
+                ( NULL , '$userid', '$comment', '" . mktime() . "', '$rev', '$type', '$diff' );";
         mysql_query( $sql );
         
         mailSync( $username, $comment, $rev, $type, $diff );
