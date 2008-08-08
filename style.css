@@ -9,6 +9,13 @@ body {
     margin: 0;
     font-size: 90%;
 }
+a, a:visited, a:active {
+    text-decoration: none;
+    color: #105cb6;
+}
+a:hover {
+        color: #000033;
+}
 div.content {
     margin: 15px;
 }
