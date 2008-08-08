@@ -22,6 +22,8 @@
         exec( "cat /var/www/zino.gr/static/js/global-beta.js > /var/www/zino.gr/static/js/global.js" );
 
         $data = implode( "\n", $output );
-        logSync( $username, $comment, $match[ 'rev' ], "csssync", $diff, $data );
+        logSync( $username, $comment, $match[ 'rev' ], "csssync", $diff );
+
+        return $data;
     }
 ?>

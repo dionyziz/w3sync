@@ -30,11 +30,7 @@
             break;
         case 'csssync':
 	        // do the main syncing
-            StaticSync( 0, $_SERVER[ 'REMOTE_USER' ], $_POST[ 'comment' ] );
-	        ?>
-	        You successfully synced to revision <?php
-            echo $match[ 'rev' ];
-            ?>.<?php
+            echo StaticSync( 0, $_SERVER[ 'REMOTE_USER' ], $_POST[ 'comment' ] );
             break;
         default:
             ?><p>Invalid option</p><?php
