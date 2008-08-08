@@ -1,12 +1,5 @@
 <?php
-    if( !isset( $_SERVER[ 'HTTPS' ] ) ) {
-        header( "301 Moved Permanently" );
-        header( "Location: https://code.kamibu.com/sync/" );
-        die();
-    }
-
     include "header.php";
-
     ?>
     <div class="username"><?php
     echo htmlspecialchars( $_SERVER[ 'REMOTE_USER' ] );
@@ -32,9 +25,11 @@
         if ( $i % 2 == 0 ) {
             ?> class="l"<?php
         }
-        ?>><td><?php
+        ?>><td><a href="info.php?id=<?php
+        echo $sync[ 'sync_id' ];
+        ?>"><?php
         echo $sync[ 'sync_rev' ];
-        ?></td><td><?php
+        ?></a></td><td><?php
         if ( empty( $sync[ 'user_name' ] ) ) {
             ?>(unknown)<?php
         }
@@ -55,6 +50,5 @@
         ++$i;
     }
     ?></tbody></table><?php
-
     include 'footer.php';
 ?>

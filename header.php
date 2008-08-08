@@ -1,4 +1,10 @@
 <?php
+    if( !isset( $_SERVER[ 'HTTPS' ] ) ) {
+        header( "301 Moved Permanently" );
+        header( "Location: https://code.kamibu.com/sync/" );
+        die();
+    }
+
     include "libs/functions.php";
 
     echo '<?xml version="1.0" encoding="utf-8"?>';
