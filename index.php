@@ -71,14 +71,14 @@
             echo date( "r", $lock[ 'lock_date' ] );
             ?></td></tr><?php
         }
-        ?>
-        Place a sync lock:
-        <form action="lock.php" method="post">
-            Comment (required): <br />
-            <textarea></textarea><br />
-
-            <input type="submit" value="Sync Lock" />
-        </form><?php
     }
+    ?>
+    Place a sync lock:
+    <form action="lock.php" method="post">
+        Comment (required): <br />
+        <textarea></textarea><br />
+
+        <input type="submit" value="Sync Lock" />
+    </form><?php
     include 'footer.php';
 ?>
