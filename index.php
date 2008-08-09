@@ -34,9 +34,9 @@
         }
         else { 
             ?><a href="mailto:<?php
-            echo $sync[ 'user_name' ];
+            echo htmlspecialchars( $sync[ 'user_name' ] );
             ?>@kamibu.com"><?php
-            echo $sync[ 'user_name' ];
+            echo htmlspecialchars( $sync[ 'user_name' ] );
             ?></a><?php
         }
         ?></td><td><?php
@@ -48,6 +48,37 @@
         ?></td></tr><?php
         ++$i;
     }
-    ?></tbody></table><?php
+    ?></tbody></table>
+    <h2>Sync locks</h2><?php
+    $locks = Lock_GetActive();
+    if ( !count( $locks ) ) {
+        ?>No active sync locks are currently placed.<?php
+    }
+    else {
+        ?><table><thead><tr><td>Developer</td><td>Reason</td><td>Date</td></tr></thead><tbody><?php
+        foreach ( $locks as $lock ) {
+            ?><tr<?php
+            if ( $i % 2 == 0 ) {
+                ?> class="l"<?php
+            }
+            ?><td><a href="mailto:<?php
+            echo htmlspecialchars( $lock[ 'user_name' ] );
+            ?>"><?php
+            echo htmlspecialchars( $lock[ 'user_name' ] );
+            ?></a></td><td><?php
+            echo htmlspecialchars( $lock[ 'lock_reason' ] );
+            ?></td><td><?php
+            echo date( "r", $lock[ 'lock_date' ] );
+            ?></td></tr><?php
+        }
+        ?>
+        Place a sync lock:
+        <form action="lock.php" method="post">
+            Comment (required): <br />
+            <textarea></textarea><br />
+
+            <input type="submit" value="Sync Lock" />
+        </form><?php
+    }
     include 'footer.php';
 ?>

@@ -4,4 +4,5 @@
     include "libs/logging.php";
     include "libs/sync.php";
     include "libs/magicquotes.php";
+    include "libs/lock.php";
 ?>
