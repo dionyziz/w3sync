@@ -34,7 +34,8 @@
             "SELECT
                 *
             FROM
-                `synclocks`
+                `synclocks` CROSS JOIN `users`
+                    ON `sync_userid`=`user_id`
             WHERE
                 `lock_active`=1;"
         );

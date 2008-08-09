@@ -1,20 +1,41 @@
 <?php
     include "header.php";
 
-    ?> What do you want to do?
-    <form method="POST" action="sync.php">
-        <input type="radio" name="do" value="sync" checked="checked" id="sync" onchange="document.getElementById( 'comment' ).focus();document.getElementById( 'comment' ).select()" /><label for="sync">Sync</label><br />
-        <!-- <input type="radio" name="do" value="beta" />Beta Sync (fast for the user - might be broken)<br /> -->
-        <input type="radio" name="do" value="csssync" id="csssync" onchange="document.getElementById( 'comment' ).focus();document.getElementById( 'comment' ).select()" /><label for="csssync">CSS and JS Sync</label><br />
-        <br />
-        Comment (required): <br />
-        <textarea name="comment" id="comment"></textarea><br />
+    $locks = Lock_GetActive();
 
-        <script type="text/javascript">
-            document.getElementById( 'comment' ).focus();
-        </script>
-        <input type="submit" value="Deploy to Production" />
-    </form>
+    if ( count( $locks ) ) {
+        $usernames = array();
+        foreach ( $locks as $lock ) {
+            $usernames[ $lock[ 'user_name' ] ] = true;
+        }
+
+        ?><img src="images/lock.png" alt="Locked:" /> <?php
+        echo implode( ', ', $usernames );
+        if ( count( $usernames ) > 1 ) {
+            ?> have<?php
+        }
+        else {
+            ?> has<?php
+        }
+        ?> requested a sync lock. You cannot currently sync.<?php
+    }
+    else {
+        ?> What do you want to do?
+        <form method="POST" action="sync.php">
+            <input type="radio" name="do" value="sync" checked="checked" id="sync" onchange="document.getElementById( 'comment' ).focus();document.getElementById( 'comment' ).select()" /><label for="sync">Sync</label><br />
+            <!-- <input type="radio" name="do" value="beta" />Beta Sync (fast for the user - might be broken)<br /> -->
+            <input type="radio" name="do" value="csssync" id="csssync" onchange="document.getElementById( 'comment' ).focus();document.getElementById( 'comment' ).select()" /><label for="csssync">CSS and JS Sync</label><br />
+            <br />
+            Comment (required): <br />
+            <textarea name="comment" id="comment"></textarea><br />
+
+            <script type="text/javascript">
+                document.getElementById( 'comment' ).focus();
+            </script>
+            <input type="submit" value="Deploy to Production" />
+        </form><?php
+    }
+    ?>
     <h2>Last syncs</h2><?php
     $lastSyncs = getLastSyncs();
     ?><table><thead><tr><td>Revision</td><td>Developer</td><td>Type</td><td>Reason</td><td>Date</td></tr></thead><tbody><?php
@@ -50,9 +71,8 @@
     }
     ?></tbody></table>
     <h2>Sync locks</h2><?php
-    $locks = Lock_GetActive();
     if ( !count( $locks ) ) {
-        ?>No active sync locks are currently placed.<?php
+        ?>No active sync locks are currently placed.<br /><?php
     }
     else {
         ?><table><thead><tr><td>Developer</td><td>Reason</td><td>Date</td></tr></thead><tbody><?php
@@ -76,7 +96,7 @@
     Place a sync lock:
     <form action="lock.php" method="post">
         Comment (required): <br />
-        <textarea></textarea><br />
+        <textarea name="comment"></textarea><br />
 
         <input type="submit" value="Sync Lock" />
     </form><?php
