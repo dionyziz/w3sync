@@ -35,7 +35,7 @@
                 *
             FROM
                 `synclocks` CROSS JOIN `users`
-                    ON `sync_userid`=`user_id`
+                    ON `lock_userid`=`user_id`
             WHERE
                 `lock_active`=1;"
         );
