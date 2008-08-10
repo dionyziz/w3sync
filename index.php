@@ -8,6 +8,10 @@
         foreach ( $locks as $lock ) {
             $usernames[ $lock[ 'user_name' ] ] = true;
         }
+        $usernames = array_flip( $usernames );
+        foreach ( $usernames as $i => $username ) {
+            $usernames[ $i ] = '<a href="mailto:' . htmlspecialchars( $username ) . '">' . htmlspecialchars( $username ) . '</a>';
+        }
 
         ?><img src="images/lock.png" alt="Locked:" /> <?php
         echo implode( ', ', $usernames );
@@ -91,9 +95,10 @@
             echo date( "r", $lock[ 'lock_date' ] );
             ?></td></tr><?php
         }
+        ?></tbody></table><?php
     }
     ?>
-    Place a sync lock:
+    Place a sync lock:<br />
     <form action="lock.php" method="post">
         Comment (required): <br />
         <textarea name="comment"></textarea><br />
