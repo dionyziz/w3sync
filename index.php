@@ -113,7 +113,7 @@
         ?></tbody></table><?php
     }
     ?>
-    <br />
+    <br /><br />
     Place a sync lock:<br />
     <form action="lock.php" method="post">
         Reason (required): <br />
