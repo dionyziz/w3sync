@@ -12,7 +12,7 @@
         }
         $usernames = array_flip( $usernames );
         foreach ( $usernames as $i => $username ) {
-            $usernames[ $i ] = '<a href="mailto:' . htmlspecialchars( $username ) . '">' . htmlspecialchars( $username ) . '</a>';
+            $usernames[ $i ] = '<a href="mailto:' . htmlspecialchars( $username ) . '@kamibu.com">' . htmlspecialchars( $username ) . '</a>';
         }
 
         ?><img src="images/lock.png" alt="Locked:" /> <?php
