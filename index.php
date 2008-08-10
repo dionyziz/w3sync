@@ -32,7 +32,7 @@
             <!-- <input type="radio" name="do" value="beta" />Beta Sync (fast for the user - might be broken)<br /> -->
             <input type="radio" name="do" value="csssync" id="csssync" onchange="document.getElementById( 'comment' ).focus();document.getElementById( 'comment' ).select()" /><label for="csssync">CSS and JS Sync</label><br />
             <br />
-            Comment (required): <br />
+            Reason (required): <br />
             <textarea name="comment" id="comment"></textarea><br />
 
             <script type="text/javascript">
@@ -78,7 +78,8 @@
     ?></tbody></table>
     <h2>Sync locks</h2><?php
     if ( !count( $locks ) ) {
-        ?>No active sync locks are currently placed.<br /><?php
+        ?>No active sync locks are currently placed.<br />
+        <small>Use sync locks to force no syncs for a limited time.</small><?php
     }
     else {
         ?><table><thead><tr><td>Developer</td><td>Reason</td><td>Date</td><td>&nbsp;</td></tr></thead><tbody><?php
@@ -111,7 +112,7 @@
     <br />
     Place a sync lock:<br />
     <form action="lock.php" method="post">
-        Comment (required): <br />
+        Reason (required): <br />
         <textarea name="comment"></textarea><br />
 
         <input type="submit" value="Sync Lock" />
