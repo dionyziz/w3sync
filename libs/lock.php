@@ -9,7 +9,7 @@
                 `lock_userid`=$userid,
                 `lock_created`=NOW(),
                 `lock_active`=1,
-                `lock_reason`=$reason;"
+                `lock_reason`='$reason';"
         ) or die( mysql_error() );
     }
 
