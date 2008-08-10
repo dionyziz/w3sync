@@ -94,8 +94,7 @@
             ?></a></td><td><?php
             echo htmlspecialchars( $lock[ 'lock_reason' ] );
             ?></td><td><?php
-            die( var_dump( $lock[ 'lock_created' ] ) );
-            echo date( "r", $lock[ 'lock_created' ] );
+            echo date( "r", strtotime( $lock[ 'lock_created' ] ) );
             ?></td><td><?php
             if ( $_SERVER[ 'REMOTE_USER' ] == $lock[ 'user_name' ] ) {
                 ?><form style="display:inline" action="unlock.php" method="post">

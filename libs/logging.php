@@ -18,7 +18,7 @@
         $diff = mysql_real_escape_string( $diff );
         $sql = "INSERT INTO `sync`
                 ( `sync_id`, `sync_userid`, `sync_comment`, `sync_created`, `sync_rev`, `sync_type`, `sync_diff` ) VALUES
-                ( NULL , '$userid', '$comment', '" . mktime() . "', '$rev', '$type', '$diff' );";
+                ( NULL , '$userid', '$comment', NOW(), '$rev', '$type', '$diff' );";
         mysql_query( $sql );
     }
 
