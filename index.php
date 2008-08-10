@@ -75,7 +75,12 @@
         ?></td><td><?php
         echo $sync[ 'sync_comment' ];
         ?></td><td><?php
-        echo date( "r", strtotime( $sync[ 'sync_created' ] ) );
+        if ( $sync[ 'sync_created' ] == '0000-00-00 00:00:00' ) {
+            ?>(unknkown)<?php
+        }
+        else {
+            echo date( "r", strtotime( $sync[ 'sync_created' ] ) );
+        }
         ?></td></tr><?php
         ++$i;
     }
