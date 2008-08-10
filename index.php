@@ -5,8 +5,10 @@
 
     if ( count( $locks ) ) {
         $usernames = array();
+        $i = 0;
         foreach ( $locks as $lock ) {
-            $usernames[ $lock[ 'user_name' ] ] = true;
+            $usernames[ $lock[ 'user_name' ] ] = $i;
+            ++$i;
         }
         $usernames = array_flip( $usernames );
         foreach ( $usernames as $i => $username ) {
