@@ -71,7 +71,7 @@
         ?></td><td><?php
         echo $sync[ 'sync_comment' ];
         ?></td><td><?php
-        echo date( "r", $sync[ 'sync_date' ] );
+        echo date( "r", $sync[ 'sync_created' ] );
         ?></td></tr><?php
         ++$i;
     }
@@ -94,7 +94,7 @@
             ?></a></td><td><?php
             echo htmlspecialchars( $lock[ 'lock_reason' ] );
             ?></td><td><?php
-            echo date( "r", $lock[ 'lock_date' ] );
+            echo date( "r", $lock[ 'lock_created' ] );
             ?></td></tr><?php
         }
         ?></tbody></table><?php
