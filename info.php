@@ -4,9 +4,6 @@
     $syncid = ( int )$_GET[ 'syncid' ];
 
     ?>
-    <div class="username"><?php
-    echo htmlspecialchars( $_SERVER[ 'REMOTE_USER' ] );
-    ?>@kamibu.com</div>
     <h2>Sync #<?php
     echo $syncid;
     ?></h2><?php

@@ -81,7 +81,7 @@
         ?>No active sync locks are currently placed.<br /><?php
     }
     else {
-        ?><table><thead><tr><td>Developer</td><td>Reason</td><td>Date</td></tr></thead><tbody><?php
+        ?><table><thead><tr><td>Developer</td><td>Reason</td><td>Date</td><td>&nbsp;</td></tr></thead><tbody><?php
         foreach ( $locks as $lock ) {
             ?><tr<?php
             if ( $i % 2 == 0 ) {
@@ -94,12 +94,22 @@
             ?></a></td><td><?php
             echo htmlspecialchars( $lock[ 'lock_reason' ] );
             ?></td><td><?php
+            die( var_dump( $lock[ 'lock_created' ] ) );
             echo date( "r", $lock[ 'lock_created' ] );
+            ?></td><td><?php
+            if ( $_SERVER[ 'REMOTE_USER' ] == $lock[ 'user_name' ] ) {
+                ?><form style="display:inline" action="unlock.php" method="post">
+                    <input type="hidden" name="lockid" value="<?php
+                    echo $lock[ 'lock_id' ];
+                    ?>" /><input type="submit" value="Delete" />
+                </form><?php
+            }
             ?></td></tr><?php
         }
         ?></tbody></table><?php
     }
     ?>
+    <br />
     Place a sync lock:<br />
     <form action="lock.php" method="post">
         Comment (required): <br />
