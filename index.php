@@ -14,8 +14,12 @@
         foreach ( $usernames as $i => $username ) {
             $usernames[ $i ] = '<a href="mailto:' . htmlspecialchars( $username ) . '@kamibu.com">' . htmlspecialchars( $username ) . '</a>';
         }
+        $usernames = array_values( $usernames );
 
         ?><img src="images/lock.png" alt="Locked:" /> <?php
+        if ( count( $usernames ) > 1 ) {
+            $usernames[ count( $usernames ) - 1 ] = 'and ' . $usernames[ count( $usernames ) -1 ];
+        }
         echo implode( ', ', $usernames );
         if ( count( $usernames ) > 1 ) {
             ?> have<?php
