@@ -12,7 +12,7 @@
 
     function SVN_Diff( $oldrevision, $newrevision ) {
         $oldrevision = ( int )$oldrevision;
-        $newrevision = ( int )$newrevisino;
+        $newrevision = ( int )$newrevision;
 
         exec( 'svn diff -r ' . $oldrevision . ':' . $newrevision . ' ' . escapeshellarg( SVN_ROOT ), $output, $ret );
 
