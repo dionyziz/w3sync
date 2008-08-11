@@ -17,7 +17,7 @@
         assert( $oldrevision > 0 );
         assert( $newrevision > 0 );
 
-        echo( 'svn diff -r ' . $oldrevision . ':' . $newrevision . ' ' . escapeshellarg( SVN_ROOT ) ); // , $output, $ret );
+        exec( 'svn diff -r ' . $oldrevision . ':' . $newrevision . ' ' . escapeshellarg( SVN_ROOT ), $output, $ret );
 
         return implode( "\n", $output );
     }
