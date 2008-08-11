@@ -44,7 +44,7 @@
     function getLastSyncs( $limit = 20 ) {
         $limit = ( int )$limit;
         $sql = "SELECT
-                    `sync`.*, previoussync.sync_rev>`sync`.revision AS rollback
+                    `sync`.*, previoussync.sync_rev>`sync`.sync_rev AS rollback
                 FROM
                     `sync` LEFT JOIN `users`
                         ON `sync_userid` = `user_id`
