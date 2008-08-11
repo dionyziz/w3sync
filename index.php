@@ -117,15 +117,13 @@
         ?></td><td><?php
         if ( $sync[ 'sync_type' ] == 'sync' && $sync[ 'sync_rev' ] < $latestrevision ) {
             ?><form action="sync.php" method="post">
-                <input type="hidden" name="comment" value="Rolled back to revision <?php
-                echo $sync[ 'sync_revision' ];
-                ?>" />
+                <input type="hidden" name="comment" />
                 <input type="hidden" name="do" value="sync" />
                 <input type="hidden" name="revision" value="<?php
-                echo $sync[ 'sync_revision' ];
+                echo $sync[ 'sync_rev' ];
                 ?>" />
                 <a style="font-size:70%" href="" onclick="Rollback( '<?php
-                echo $sync[ 'sync_revision' ];
+                echo $sync[ 'sync_rev' ];
                 ?>', this );return false;">Rollback to here</a>
             </form><?php
         }
