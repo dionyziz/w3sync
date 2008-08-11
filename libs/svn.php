@@ -3,7 +3,7 @@
 
     function SVN_GetCurrentRevision() {
         // get current rev. this will be the rev of the new synced version
-        $revstring = exec( "svn info " . SVN_ROOT . "|grep Revision" );
+        $revstring = exec( "sudo -u syncer svn info " . SVN_ROOT . "|grep Revision" );
         preg_match( "/Revision: (?<rev>\w+)/", $revstring, $match );
         $revision = $match[ 'rev' ];
 
@@ -17,7 +17,7 @@
         assert( $oldrevision > 0 );
         assert( $newrevision > 0 );
 
-        exec( 'svn diff -r ' . $oldrevision . ':' . $newrevision . ' ' . escapeshellarg( SVN_ROOT ), $output, $ret );
+        exec( 'sudo -u syncer svn diff -r ' . $oldrevision . ':' . $newrevision . ' ' . escapeshellarg( SVN_ROOT ), $output, $ret );
 
         return implode( "\n", $output );
     }
