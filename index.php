@@ -75,9 +75,7 @@
     ?><table><thead><tr><td>Revision</td><td>Developer</td><td>Type</td><td>Reason</td><td>Date</td><td>&nbsp;</td></tr></thead><tbody><?php
     $i = 1;
     $latestrevision = Log_GetLatestByType( 'sync' );
-    var_dump( $latestrevision );
-    ?>Latest revision: <?php
-    echo $latestrevision .'.';
+    $latestrevision = $latestrevision[ 'sync_rev' ];
     foreach ( $lastSyncs as $sync ) {
         ?><tr<?php
         if ( $i % 2 == 0 ) {
