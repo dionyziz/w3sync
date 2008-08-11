@@ -42,7 +42,8 @@
                     break;
             }
         }
-        echo nl2br( $diff );
+        $diff = implode( "<br />", $diff );
+        echo $diff;
         ?></pre><?php
     }
     include 'footer.php';
