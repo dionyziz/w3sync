@@ -78,3 +78,9 @@ div.diff {
     overflow: auto;
     max-height: 800px;
 }
+span.added {
+    color: #4070aa;
+}
+span.removed {
+    color: #aa5555;
+}
