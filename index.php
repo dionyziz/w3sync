@@ -124,9 +124,9 @@
                 <input type="hidden" name="revision" value="<?php
                 echo $sync[ 'sync_revision' ];
                 ?>" />
-                <small><a href="" onclick="Rollback( '<?php
+                <a style="font-size:80%" href="" onclick="Rollback( '<?php
                 echo $sync[ 'sync_revision' ];
-                ?>', this );return false;">Rollback to here</a></small>
+                ?>', this );return false;">Rollback to here</a>
             </form><?php
         }
         ?></td></tr><?php
