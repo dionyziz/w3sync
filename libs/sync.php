@@ -3,15 +3,12 @@
         $revision = ( int )$revision;
         exec( "wget -O - http://zeus.blogcube.net/sync/beta.php?revision=" . $revision, $output, $ret );
         $data = implode( "\n", $output );
-        preg_match( "/Updated to revision (?<rev>\w+)./", $data, $match );
-        if ( isset( $match[ 'rev' ] ) ) { // successful
-            // replace data with full diff
-            $latestsync = Log_GetLatestByType( 'sync' );
-            $previousrevision = $latestsync[ 'sync_rev' ];
-            $diff = SVN_Diff( $previousrevision, $revision );
-            $data .= "\nDiff between revisions $previousrevision and $revision:\n\n" . $diff;
-        }
-        // else error just pass it to the log function...
+
+        $latestsync = Log_GetLatestByType( 'sync' );
+        $previousrevision = $latestsync[ 'sync_rev' ];
+        $diff = SVN_Diff( $previousrevision, $revision );
+        $data .= "\nDiff between revisions $previousrevision and $revision:\n\n" . $diff;
+        
         Log_Create( $username, $comment, $revision, "sync", $data );
 
         return $data;
