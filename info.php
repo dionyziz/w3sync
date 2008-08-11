@@ -29,6 +29,7 @@
         <div class="diff"><?php
         $diff = $sync[ 'sync_diff' ];
         $diff = htmlspecialchars( $diff );
+        $diff = str_replace( "\t", "    ", $diff );
         $diff = preg_replace( '# (?= )#', '&nbsp;', $diff );
         echo nl2br( $diff );
         ?></pre><?php
