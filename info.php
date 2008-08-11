@@ -28,8 +28,9 @@
             
         <div class="diff"><?php
         $diff = $sync[ 'sync_diff' ];
+        $diff = htmlspecialchars( $diff );
         $diff = preg_replace( '# (?= )#', '&nbsp;', $diff );
-        echo nl2br( htmlspecialchars( $diff ) );
+        echo nl2br( $diff );
         ?></pre><?php
     }
     include 'footer.php';
