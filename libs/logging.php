@@ -52,7 +52,7 @@
                         ON `sync`.`sync_type`=previoussync.`sync_type`
                         AND `sync`.`sync_id`>previoussync.`sync_id`
                     LEFT JOIN `sync` AS maxfilter
-                        ON previoussync.`sync_id`<maxfilter.`sync_id`
+                        ON previoussync.`sync_id`<maxfilter.`sync_id` AND maxfilter.`sync_id`<`sync`.`sync_id`
                 WHERE
                     maxfilter.`sync_id` IS NULL
                 GROUP BY
