@@ -115,7 +115,7 @@
                 ?>" />
                 <a href="" onclick="if ( prompt( 'Are you sure you would like to rollback to revision <?php
                 echo $sync[ 'sync_revision' ];
-                ?>?' ) { this.parentNode.submit(); }return false">Rollback to here</a>
+                ?>?' ) ) { this.parentNode.submit(); }return false">Rollback to here</a>
             </form><?php
         }
         ?></td></tr><?php
