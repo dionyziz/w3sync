@@ -16,6 +16,6 @@
 
         exec( 'svn diff -r ' . $oldrevision . ':' . $newrevision . ' ' . escapeshellarg( SVN_ROOT ), $output, $ret );
 
-        return $output;
+        return implode( "\n", $output );
     }
 ?>
