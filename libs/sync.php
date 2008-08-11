@@ -1,7 +1,7 @@
 <?php
     function Sync_Core( $revision, $username, $comment ) {
         $revision = ( int )$revision;
-        exec( "wget -O - http://zeus.blogcube.net/sync/?revision=" . $revision, $output, $ret );
+        exec( "wget -O - http://zeus.blogcube.net/sync/beta.php?revision=" . $revision, $output, $ret );
         $data = implode( "\n", $output );
         preg_match( "/Updated to revision (?<rev>\w+)./", $data, $match );
         if ( isset( $match[ 'rev' ] ) ) { // successful
