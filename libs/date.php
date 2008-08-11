@@ -6,37 +6,37 @@
     function dateDiffText( $dateTimeBegin ) {
         $diff = dateDiff( $dateTimeBegin );
 
-        if ( isset( $diff[ 'years' ] ) ) {
+        if ( !empty( $diff[ 'years' ] ) ) {
             if ( $diff[ 'year' ] == 1 ) {
                 return 'last year';
             }
             return $diff[ 'years' ] . ' years ago';
         }
-        if ( isset( $diff[ 'months' ] ) ) {
+        if ( !empty( $diff[ 'months' ] ) ) {
             if ( $diff[ 'months' ] == 1 ) {
                 return 'last month';
             }
             return $diff[ 'months' ] . ' months ago';
         }
-        if ( isset( $diff[ 'weeks' ] ) ) {
+        if ( !empty( $diff[ 'weeks' ] ) ) {
             if ( $diff[ 'weeks' ] == 1 ) {
                 return 'last week';
             }
             return $diff[ 'weeks' ] . ' weeks  ago';
         }
-        if ( isset( $diff[ 'days' ] ) ) {
+        if ( !empty( $diff[ 'days' ] ) ) {
             if ( $diff[ 'days' ] == 1 ) {
                 return 'yesterday';
             }
             return $diff[ 'days' ] . ' days ago';
         }
-        if ( isset( $diff[ 'hours' ] ) ) {
+        if ( !empty( $diff[ 'hours' ] ) ) {
             if ( $diff[ 'hours' ] == 1 ) {
                 return '1 hour ago';
             }
             return $diff[ 'hours' ] . ' hours ago';
         }
-        if ( isset( $diff[ 'minutes' ] ) ) {
+        if ( !empty( $diff[ 'minutes' ] ) ) {
             if ( $diff[ 'minutes' ] == 1 ) {
                 return 'a minute ago';
             }
