@@ -9,24 +9,18 @@
         ?><p>A comment is required. No sync made.</p><?php
         return;
     }
+    if ( empty( $_POST[ 'revision' ] ) ) {
+        ?><p>You must provide a revision number. No sync made.</p><?php
+        return;
+    }
 
     switch ( $_POST[ 'do' ] ) {
         case 'sync':
             ?>
             A Sync is being made:
             <pre><?php
-            echo Sync_Core( 0, $_SERVER[ 'REMOTE_USER' ], $_POST[ 'comment' ]);
+            echo Sync_Core( $_POST[ 'revision' ], $_SERVER[ 'REMOTE_USER' ], $_POST[ 'comment' ]);
             ?></pre><?php
-            break;
-        case 'beta':
-            // TODO
-	        ?>
-	        A Sync is being made:
-	        <pre><?php
-	        $revstring = system( "wget -O - http://zeus.blogcube.net/sync/beta.php" );
-	        preg_match( "/revision (?<rev>\w+)./", $revstring, $match );
-	        Log_Sync( $_SERVER[ 'REMOTE_USER' ], $_POST[ 'comment' ], $match[ 'rev' ], "sync" );
-	        ?></pre><?php
             break;
         case 'csssync':
 	        // do the main syncing

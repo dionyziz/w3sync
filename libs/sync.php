@@ -1,9 +1,17 @@
 <?php
     function Sync_Core( $revision, $username, $comment ) {
-        exec( "wget -O - http://zeus.blogcube.net/sync/", $output, $ret );
+        $revision = ( int )$revision;
+        exec( "wget -O - http://zeus.blogcube.net/sync/?revision=" . $revision, $output, $ret );
         $data = implode( "\n", $output );
-        preg_match( "/revision (?<rev>\w+)./", $data, $match );
-        $revision = $match[ 'rev' ];
+        preg_match( "/Updated to revision (?<rev>\w+)./", $data, $match );
+        if ( isset( $match[ 'rev' ] ) ) { // successful
+            // replace data with full diff
+            $latestsync = Log_GetLatestByType( 'sync' );
+            $previousrevision = $latestsync[ 'sync_rev' ];
+            $diff = SVN_Diff( $previousrevision, $revision );
+            $data = $diff;
+        }
+        // else error just pass it to the log function...
         Log_Create( $username, $comment, $revision, "sync", $data );
 
         return $data;
@@ -15,15 +23,13 @@
         exec( "diff /var/www/zino.gr/static/css/global.css /var/www/zino.gr/static/css/global-beta.css", $output, $ret );
         exec( "diff /var/www/zino.gr/static/css/global.js /var/www/zino.gr/static/css/global-beta.js", $output, $ret );
 
-        exec( "/var/www/zino.gr/beta/phoenix/etc/generate-static.php production /var/www/zino.gr/beta/phoenix/css > /var/www/zino.gr/static/css/global.css" );
-        exec( "/var/www/zino.gr/beta/phoenix/etc/generate-static.php production /var/www/zino.gr/beta/phoenix/js|/srv/svn/jsmin > /var/www/zino.gr/static/js/global.js" );
+        exec( SVN_ROOT . "etc/generate-static.php production " . SVN_ROOT . "css > /var/www/zino.gr/static/css/global.css" );
+        exec( SVN_ROOT . "etc/generate-static.php production " . SVN_ROOT . "js|/srv/svn/jsmin > /var/www/zino.gr/static/js/global.js" );
 
         $data = implode( "\n", $output );
         $data .= "\nGenerated global.css and global.js revision " . $revision . ".\n";
-        logSync( $username, $comment, $match[ 'rev' ], "csssync", $data );
+        Log_Create( $username, $comment, $match[ 'rev' ], "csssync", $data );
 
         return $data;
     }
-
-
 ?>
