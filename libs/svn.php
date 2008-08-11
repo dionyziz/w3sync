@@ -14,6 +14,9 @@
         $oldrevision = ( int )$oldrevision;
         $newrevision = ( int )$newrevision;
 
+        assert( $oldrevision > 0 );
+        assert( $newrevision > 0 );
+
         exec( 'svn diff -r ' . $oldrevision . ':' . $newrevision . ' ' . escapeshellarg( SVN_ROOT ), $output, $ret );
 
         return implode( "\n", $output );
