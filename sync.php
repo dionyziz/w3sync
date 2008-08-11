@@ -19,7 +19,7 @@
             ?>
             A Sync is being made:
             <pre><?php
-            echo htmlspecialchars( Sync_Core( $_POST[ 'revision' ], $_SERVER[ 'REMOTE_USER' ], $_POST[ 'comment' ] ) );
+            echo htmlspecialchars( Sync_Core( $_POST[ 'revision' ], $_SERVER[ 'REMOTE_USER' ], $_POST[ 'comment' ], $syncid ) );
             ?></pre><?php
             break;
         case 'csssync':
@@ -27,10 +27,14 @@
             ?>
             A Static Sync is being made:
             <pre><?php
-            echo htmlspecialchars( Sync_Static( 0, $_SERVER[ 'REMOTE_USER' ], $_POST[ 'comment' ] ) );
+            echo htmlspecialchars( Sync_Static( 0, $_SERVER[ 'REMOTE_USER' ], $_POST[ 'comment' ], $syncid ) );
             ?></pre><?php
             break;
         default:
             ?><p>Invalid option</p><?php
     }
+
+    ob_clean();
+    header( 'Location: info.php?syncid=' . $syncid );
+    return;
 ?>

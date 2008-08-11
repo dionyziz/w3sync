@@ -1,5 +1,5 @@
 <?php
-    function Sync_Core( $revision, $username, $comment ) {
+    function Sync_Core( $revision, $username, $comment, &$syncid ) {
         $revision = ( int )$revision;
         exec( "wget -O - http://zeus.blogcube.net/sync/beta.php?revision=" . $revision, $output, $ret );
         $data = implode( "\n", $output );
@@ -15,7 +15,7 @@
         }
         $data .= "\nDiff between revisions $previousrevision and $revision: $diff";
         
-        Log_Create( $username, $comment, $revision, "sync", $data );
+        $syncid = Log_Create( $username, $comment, $revision, "sync", $data );
 
         return $data;
     }
@@ -31,7 +31,7 @@
 
         $data = implode( "\n", $output );
         $data .= "\nGenerated global.css and global.js revision " . $revision . ".\n";
-        Log_Create( $username, $comment, $match[ 'rev' ], "csssync", $data );
+        $syncid = Log_Create( $username, $comment, $match[ 'rev' ], "csssync", $data );
 
         return $data;
     }

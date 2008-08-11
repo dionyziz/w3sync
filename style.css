@@ -76,5 +76,5 @@ div.diff {
     width: 100%;
     border: 1px solid #ccc;
     padding: 5px;
-    overflow: scroll;
+    overflow: auto;
 }

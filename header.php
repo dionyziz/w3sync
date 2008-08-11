@@ -18,6 +18,7 @@
     include "libs/functions.php";
     magicquotes_off();
 
+    ob_start();
     echo '<?xml version="1.0" encoding="utf-8"?>';
 ?>
 

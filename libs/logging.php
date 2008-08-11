@@ -20,6 +20,8 @@
                 ( `sync_id`, `sync_userid`, `sync_comment`, `sync_created`, `sync_rev`, `sync_type`, `sync_diff` ) VALUES
                 ( NULL , '$userid', '$comment', NOW(), '$rev', '$type', '$diff' );";
         mysql_query( $sql );
+
+        return mysql_insert_id();
     }
 
     function Log_Mail( $username, $comment, $rev, $type, $diff ) {
