@@ -59,17 +59,17 @@
         if ( $i % 2 == 0 ) {
             ?> class="l"<?php
         }
-        ?>><td><?php
+        ?>><td><a href="info.php?syncid=<?php
+        echo $sync[ 'sync_id' ];
+        ?>"><?php
+        echo $sync[ 'sync_rev' ];
+        ?></a><?php
         if ( $sync[ 'rollback' ] ) {
             ?><img src="images/arrow_undo.png" alt="Rollback to " title="Rolled back to revision <?php
             echo $sync[ 'sync_rev' ];
             ?>" /> <?php
         }
-        ?><a href="info.php?syncid=<?php
-        echo $sync[ 'sync_id' ];
-        ?>"><?php
-        echo $sync[ 'sync_rev' ];
-        ?></a></td><td><?php
+        ?></td><td><?php
         if ( empty( $sync[ 'user_name' ] ) ) {
             ?>(unknown)<?php
         }
