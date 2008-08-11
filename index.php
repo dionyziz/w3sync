@@ -56,6 +56,15 @@
                     }
                     document.getElementById( 'comment' ).focus();
                 }
+                function Rollback( revision, anchor ) {
+                    var reason = prompt( 'Why do you want to rollback to revision ' + revision + '?' );
+
+                    if ( reason == '' ) {
+                        return;
+                    }
+                    anchor.parentNode.getElementsByTagName( 'input' )[ 0 ].value = reason;
+                    anchor.parentNode.submit();
+                }
             </script>
             <input type="submit" value="Deploy to Production" />
         </form><?php
@@ -65,7 +74,7 @@
     $lastSyncs = Log_GetLatest( 20 );
     ?><table><thead><tr><td>Revision</td><td>Developer</td><td>Type</td><td>Reason</td><td>Date</td><td>&nbsp;</td></tr></thead><tbody><?php
     $i = 1;
-    $j = 0;
+    $latestrevision = Log_GetLatestByType( 'sync' );
     foreach ( $lastSyncs as $sync ) {
         ?><tr<?php
         if ( $i % 2 == 0 ) {
@@ -104,23 +113,22 @@
             echo date( "r", strtotime( $sync[ 'sync_created' ] ) );
         }
         ?></td><td><?php
-        if ( $j != 0 && $sync[ 'sync_type' ] == 'sync' && $sync[ 'sync_revision' ] < $revision ) {
+        if ( $sync[ 'sync_type' ] == 'sync' && $sync[ 'sync_revision' ] < $latestrevision ) {
             ?><form action="sync.php" method="post">
-                <input type="hidden" name="do" value="sync" />
                 <input type="hidden" name="comment" value="Rolled back to revision <?php
                 echo $sync[ 'sync_revision' ];
                 ?>" />
+                <input type="hidden" name="do" value="sync" />
                 <input type="hidden" name="revision" value="<?php
                 echo $sync[ 'sync_revision' ];
                 ?>" />
-                <a href="" onclick="if ( prompt( 'Are you sure you would like to rollback to revision <?php
+                <a href="" onclick="Rollback( '<?php
                 echo $sync[ 'sync_revision' ];
-                ?>?' ) ) { this.parentNode.submit(); }return false">Rollback to here</a>
+                ?>', this );return false;">Rollback to here</a>
             </form><?php
         }
         ?></td></tr><?php
         ++$i;
-        ++$j;
     }
     ?></tbody></table>
     <h2>Sync locks</h2><?php
