@@ -32,13 +32,13 @@
         $diff = str_replace( "\t", "    ", $diff );
         $diff = preg_replace( '# (?= )#', '&nbsp;', $diff );
         $diff = explode( "\n", $diff );
-        foreach ( $diff as $line ) {
+        foreach ( $diff as $i => $line ) {
             switch ( $line{ 0 } ) {
                 case '+':
-                    $line = '<span class="added">' . $line . '</span>';
+                    $diff[ $i ] = '<span class="added">' . $line . '</span>';
                     break;
                 case '-':
-                    $line = '<span class="removed">' . $line . '</span>';
+                    $diff[ $i ] = '<span class="removed">' . $line . '</span>';
                     break;
             }
         }
