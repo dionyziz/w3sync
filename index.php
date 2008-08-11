@@ -115,7 +115,7 @@
             echo date( "r", strtotime( $sync[ 'sync_created' ] ) );
         }
         ?></td><td><?php
-        if ( $sync[ 'sync_type' ] == 'sync' && $sync[ 'sync_revision' ] < $latestrevision ) {
+        if ( $sync[ 'sync_type' ] == 'sync' && $sync[ 'sync_rev' ] < $latestrevision ) {
             ?><form action="sync.php" method="post">
                 <input type="hidden" name="comment" value="Rolled back to revision <?php
                 echo $sync[ 'sync_revision' ];
@@ -124,9 +124,9 @@
                 <input type="hidden" name="revision" value="<?php
                 echo $sync[ 'sync_revision' ];
                 ?>" />
-                <a href="" onclick="Rollback( '<?php
+                <small><a href="" onclick="Rollback( '<?php
                 echo $sync[ 'sync_revision' ];
-                ?>', this );return false;">Rollback to here</a>
+                ?>', this );return false;">Rollback to here</a></small>
             </form><?php
         }
         ?></td></tr><?php
