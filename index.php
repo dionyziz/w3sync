@@ -76,6 +76,7 @@
     $i = 1;
     $latestrevision = Log_GetLatestByType( 'sync' );
     $latestrevision = $latestrevision[ 'sync_rev' ];
+    echo "$latestrevision.";
     foreach ( $lastSyncs as $sync ) {
         ?><tr<?php
         if ( $i % 2 == 0 ) {
