@@ -43,7 +43,7 @@
             ?>" name="revision" /><br />
             </div>
             Reason (required): <br />
-            <textarea name="comment" id="comment"></textarea><br />
+            <input name="comment" id="comment" /><br />
 
             <script type="text/javascript">
                 document.getElementById( 'comment' ).focus();

@@ -36,6 +36,9 @@ table {
 table tr.l {
     background-color: #eee;
 }
+input#comment {
+    width: 200px;
+}
 textarea {
     margin: 5px;
     width: 100%;
