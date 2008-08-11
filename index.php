@@ -36,10 +36,12 @@
             <!-- <input type="radio" name="do" value="beta" />Beta Sync (fast for the user - might be broken)<br /> -->
             <input type="radio" name="do" value="csssync" id="csssync" onchange="radioChanged();" /><label for="csssync">CSS and JS Sync</label><br />
             <br />
+            <div id="revision">
             Revision: <input type="text" value="<?php
             $revision = SVN_GetCurrentRevision();
             echo $revision;
-            ?>" name="revision" id="revision" /><br />
+            ?>" name="revision" /><br />
+            </div>
             Reason (required): <br />
             <textarea name="comment" id="comment"></textarea><br />
 
