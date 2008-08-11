@@ -51,7 +51,7 @@
     }
     ?>
     <h2>Last syncs</h2><?php
-    $lastSyncs = getLastSyncs();
+    $lastSyncs = getLastSyncs( 20 );
     ?><table><thead><tr><td>Revision</td><td>Developer</td><td>Type</td><td>Reason</td><td>Date</td></tr></thead><tbody><?php
     $i = 1;
     foreach ( $lastSyncs as $sync ) {
@@ -59,7 +59,13 @@
         if ( $i % 2 == 0 ) {
             ?> class="l"<?php
         }
-        ?>><td><a href="info.php?syncid=<?php
+        ?>><td><?php
+        if ( $sync[ 'rollback' ] ) {
+            ?><img src="images/arrow_undo.png" alt="Rollback to " title="Rolled back to revision <?php
+            echo $sync[ 'sync_rev' ];
+            ?>" /> <?php
+        }
+        ?><a href="info.php?syncid=<?php
         echo $sync[ 'sync_id' ];
         ?>"><?php
         echo $sync[ 'sync_rev' ];

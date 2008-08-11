@@ -41,20 +41,60 @@
         mail( "svn@kamibu.com", "[SYNC] " . $types[ $type ] . " - $rev - $comment", $text, "From: $username@kamibu.com" );
     }
 
-    function getLastSyncs() {
+    function getLastSyncs( $limit = 20 ) {
+        $limit = ( int )$limit;
         $sql = "SELECT
-                    *
+                    `sync`.*, previoussync.sync_rev>`sync`.revision AS rollback
                 FROM
                     `sync` LEFT JOIN `users`
                         ON `sync_userid` = `user_id`
+                    LEFT JOIN `sync` AS previoussync
+                        ON `sync`.`sync_type`=previoussync.`sync_type`
+                        AND `sync`.`sync_id`>previoussync.`sync_id`
+                GROUP BY
+                    `sync`.`sync_id`
                 ORDER BY 
                     `sync_id` DESC
-                LIMIT 20;";
+                LIMIT " . $limit;
         $res = mysql_query( $sql );
         $return = array();
         while( $row = mysql_fetch_array( $res ) ) {
             $return[] = $row;
         }
         return $return;
+    }
+
+    function getLastSync( $type ) {
+        global $types;
+
+        if ( !isset( $types[ $type ] ) ) {
+            return;
+        }
+
+        $res = mysql_query(
+            "SELECT
+                *
+            FROM
+                `sync` LEFT JOIN `users` ON `sync_userid` = `user_id`
+            WHERE
+                `sync_type`='" . $type . "'
+            ORDER BY `sync_id` DESC LIMIT 1;"
+        );
+        if ( !mysql_num_rows( $res ) ) {
+            $row = array( 'sync_revision' => 0 );
+        }
+        else {
+            $row = mysql_fetch_array( $res );
+        }
+        return $row;
+    }
+
+    function getSyncInfo( $syncid ) {
+        $syncid = ( int )$syncid;
+        $res = mysql_query( "SELECT * FROM `sync` LEFT JOIN `users` ON `sync_userid` = `user_id` WHERE `sync_id` = " . $syncid . " LIMIT 1;" );
+        if ( !mysql_num_rows( $res ) ) {
+            return false;
+        }
+        return mysql_fetch_array( $res );
     }
 ?>

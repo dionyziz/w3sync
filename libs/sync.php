@@ -34,37 +34,5 @@
         return $data;
     }
 
-    function getLastSyn( $type ) {
-        global $types;
-
-        if ( !isset( $types[ $type ] ) ) {
-            return;
-        }
-
-        $res = mysql_query(
-            "SELECT
-                *
-            FROM
-                `sync` LEFT JOIN `users` ON `sync_userid` = `user_id`
-            WHERE
-                `sync_type`='" . $type . "'
-            ORDER BY `sync_id` DESC LIMIT 1;"
-        );
-        if ( !mysql_num_rows( $res ) ) {
-            $row = array( 'sync_revision' => 0 );
-        }
-        else {
-            $row = mysql_fetch_array( $res );
-        }
-        return $row;
-    }
-    function getSyncInfo( $syncid ) {
-        $syncid = ( int )$syncid;
-        $res = mysql_query( "SELECT * FROM `sync` LEFT JOIN `users` ON `sync_userid` = `user_id` WHERE `sync_id` = " . $syncid . " LIMIT 1;" );
-        if ( !mysql_num_rows( $res ) ) {
-            return false;
-        }
-        return mysql_fetch_array( $res );
-    }
 
 ?>
