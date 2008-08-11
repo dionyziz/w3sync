@@ -1,4 +1,8 @@
 <?php
+    function NowDate() {
+        return date( 'Y-m-d H:i:s', time() );
+    }
+
     function dateDiffText( $dateTimeBegin ) {
         $diff = dateDiff( $dateTimeBegin );
 
