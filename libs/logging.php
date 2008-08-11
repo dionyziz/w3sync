@@ -56,7 +56,7 @@
                 ORDER BY 
                     `sync_id` DESC
                 LIMIT " . $limit;
-        $res = mysql_query( $sql );
+        $res = mysql_query( $sql ) or die( mysql_error() );
         $return = array();
         while( $row = mysql_fetch_array( $res ) ) {
             $return[] = $row;
