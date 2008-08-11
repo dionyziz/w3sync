@@ -71,4 +71,9 @@ h3 {
     color: #666;
     text-align: left;
 }
-
+div.diff {
+    white-space: pre;
+    width: 100%;
+    border: 1px solid #ccc;
+    padding: 5px;
+}

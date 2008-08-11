@@ -24,7 +24,9 @@
         echo date( 'r', $sync[ 'sync_date' ] );
         ?></li><li><strong>Type:</strong> <?php
         echo htmlspecialchars( $sync[ 'sync_type' ] );
-        ?></li></ul><pre><?php
+        ?></li></ul>
+            
+        <div class="diff"><?php
         echo htmlspecialchars( $sync[ 'sync_diff' ] );
         ?></pre><?php
     }
