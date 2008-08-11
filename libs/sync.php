@@ -4,7 +4,7 @@
         $data = implode( "\n", $output );
         preg_match( "/revision (?<rev>\w+)./", $data, $match );
         $revision = $match[ 'rev' ];
-        logSync( $username, $comment, $revision, "sync", $data );
+        Log_Create( $username, $comment, $revision, "sync", $data );
 
         return $data;
     }
