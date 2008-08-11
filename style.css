@@ -77,4 +77,5 @@ div.diff {
     border: 1px solid #ccc;
     padding: 5px;
     overflow: auto;
+    max-height: 800px;
 }
