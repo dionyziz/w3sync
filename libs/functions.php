@@ -6,4 +6,5 @@
     include "libs/magicquotes.php";
     include "libs/lock.php";
     include "libs/svn.php";
+    include "libs/date.php";
 ?>

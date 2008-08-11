@@ -111,7 +111,7 @@
             ?>(unknkown)<?php
         }
         else {
-            echo date( "r", strtotime( $sync[ 'sync_created' ] ) );
+            echo dateDiffText( $sync[ 'sync_created' ] );
         }
         ?></td><td><?php
         if ( $sync[ 'sync_type' ] == 'sync' && $sync[ 'sync_rev' ] < $latestrevision ) {
