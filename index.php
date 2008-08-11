@@ -36,10 +36,10 @@
             <!-- <input type="radio" name="do" value="beta" />Beta Sync (fast for the user - might be broken)<br /> -->
             <input type="radio" name="do" value="csssync" id="csssync" onchange="document.getElementById( 'comment' ).focus();document.getElementById( 'comment' ).select()" /><label for="csssync">CSS and JS Sync</label><br />
             <br />
-            Revision: <input type="text" value="<?php
+            <!-- Revision: <input type="text" value="<?php
             $revision = getCurrentRevision();
             echo $revision;
-            ?>" name="revision" /><br />
+            ?>" name="revision" /><br /> -->
             Reason (required): <br />
             <textarea name="comment" id="comment"></textarea><br />
 
