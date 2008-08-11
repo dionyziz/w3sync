@@ -65,9 +65,9 @@
         echo $sync[ 'sync_rev' ];
         ?></a><?php
         if ( $sync[ 'rollback' ] ) {
-            ?><img src="images/arrow_undo.png" alt="Rollback to " title="Rolled back to revision <?php
+            ?> <img src="images/arrow_undo.png" alt="Rollback to " title="Rolled back to revision <?php
             echo $sync[ 'sync_rev' ];
-            ?>" /> <?php
+            ?>" /><?php
         }
         ?></td><td><?php
         if ( empty( $sync[ 'user_name' ] ) ) {
