@@ -43,6 +43,9 @@
 
     function Log_GetLatest( $limit = 20 ) {
         $limit = ( int )$limit;
+        // the two left joins with itself are for retrieving the boolean "rollback" value which determines
+        // whether the sync is a rollback -- essentially we're looking for the exact previous sync_id of the
+        // same type for each row and compare its sync_rev value with the current row's sync_rev value.
         $sql = "SELECT
                     `sync`.*, previoussync.`sync_rev`>`sync`.sync_rev AS rollback, `users`.*
                 FROM
