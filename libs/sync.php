@@ -7,7 +7,13 @@
         $latestsync = Log_GetLatestByType( 'sync' );
         $previousrevision = $latestsync[ 'sync_rev' ];
         $diff = SVN_Diff( $previousrevision, $revision );
-        $data .= "\nDiff between revisions $previousrevision and $revision:\n\n" . $diff;
+        if ( empty( $diff ) ) {
+            $diff = "(none)";
+        }
+        else {
+            $diff = "\n\n$diff";
+        }
+        $data .= "\nDiff between revisions $previousrevision and $revision: $diff";
         
         Log_Create( $username, $comment, $revision, "sync", $data );
 
