@@ -3,6 +3,8 @@
 
     $locks = Lock_GetActive();
 
+    die( SVN_Diff( 10000, 12000 ) );
+
     if ( count( $locks ) ) {
         $usernames = array();
         $i = 0;
