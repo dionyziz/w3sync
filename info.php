@@ -7,7 +7,7 @@
     <h2>Sync #<?php
     echo $syncid;
     ?></h2><?php
-    $sync = getSyncInfo( $syncid );
+    $sync = Log_GetById( $syncid );
     if ( $sync === false ) {
         ?>There was no such sync.<?php
     }

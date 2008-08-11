@@ -6,13 +6,13 @@
         'csssync' => 'css / js'
     );
 
-    function logSync( $username, $comment, $rev, $type, $diff ) {
+    function Log_Create( $username, $comment, $rev, $type, $diff ) {
         global $types;
 
-        mailSync( $username, $comment, $rev, $type, $diff );
         if ( !isset( $types[ $type ] ) ) {
             return;
         }
+        Log_Mail( $username, $comment, $rev, $type, $diff );
         $userid = getUserByName( $username );
         $comment = mysql_real_escape_string( $comment );
         $diff = mysql_real_escape_string( $diff );
@@ -22,7 +22,7 @@
         mysql_query( $sql );
     }
 
-    function mailSync( $username, $comment, $rev, $type, $diff ) {
+    function Log_Mail( $username, $comment, $rev, $type, $diff ) {
         global $types;
         
         if ( !preg_match( '#^[a-z0-9-\_]+$#', $username ) ) {
@@ -41,7 +41,7 @@
         mail( "svn@kamibu.com", "[SYNC] " . $types[ $type ] . " - $rev - $comment", $text, "From: $username@kamibu.com" );
     }
 
-    function getLastSyncs( $limit = 20 ) {
+    function Log_GetLatest( $limit = 20 ) {
         $limit = ( int )$limit;
         $sql = "SELECT
                     `sync`.*, MAX( previoussync.sync_rev )>`sync`.sync_rev AS rollback, `users`.*
@@ -64,7 +64,7 @@
         return $return;
     }
 
-    function getLastSync( $type ) {
+    function Log_GetLatestByType( $type ) {
         global $types;
 
         if ( !isset( $types[ $type ] ) ) {
@@ -89,7 +89,7 @@
         return $row;
     }
 
-    function getSyncInfo( $syncid ) {
+    function Log_GetById( $syncid ) {
         $syncid = ( int )$syncid;
         $res = mysql_query( "SELECT * FROM `sync` LEFT JOIN `users` ON `sync_userid` = `user_id` WHERE `sync_id` = " . $syncid . " LIMIT 1;" );
         if ( !mysql_num_rows( $res ) ) {

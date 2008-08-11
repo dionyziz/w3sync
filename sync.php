@@ -15,7 +15,7 @@
             ?>
             A Sync is being made:
             <pre><?php
-            echo Sync( 0, $_SERVER[ 'REMOTE_USER' ], $_POST[ 'comment' ]);
+            echo Sync_Core( 0, $_SERVER[ 'REMOTE_USER' ], $_POST[ 'comment' ]);
             ?></pre><?php
             break;
         case 'beta':
@@ -25,7 +25,7 @@
 	        <pre><?php
 	        $revstring = system( "wget -O - http://zeus.blogcube.net/sync/beta.php" );
 	        preg_match( "/revision (?<rev>\w+)./", $revstring, $match );
-	        logSync( $_SERVER[ 'REMOTE_USER' ], $_POST[ 'comment' ], $match[ 'rev' ], "sync" );
+	        Log_Sync( $_SERVER[ 'REMOTE_USER' ], $_POST[ 'comment' ], $match[ 'rev' ], "sync" );
 	        ?></pre><?php
             break;
         case 'csssync':
@@ -33,7 +33,7 @@
             ?>
             A Static Sync is being made:
             <pre><?php
-            echo StaticSync( 0, $_SERVER[ 'REMOTE_USER' ], $_POST[ 'comment' ] );
+            echo Sync_Static( 0, $_SERVER[ 'REMOTE_USER' ], $_POST[ 'comment' ] );
             ?></pre><?php
             break;
         default:

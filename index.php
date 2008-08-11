@@ -37,7 +37,7 @@
             <input type="radio" name="do" value="csssync" id="csssync" onchange="document.getElementById( 'comment' ).focus();document.getElementById( 'comment' ).select()" /><label for="csssync">CSS and JS Sync</label><br />
             <br />
             <!-- Revision: <input type="text" value="<?php
-            $revision = getCurrentRevision();
+            $revision = SVN_GetCurrentRevision();
             echo $revision;
             ?>" name="revision" /><br /> -->
             Reason (required): <br />
@@ -51,7 +51,7 @@
     }
     ?>
     <h2>Last syncs</h2><?php
-    $lastSyncs = getLastSyncs( 20 );
+    $lastSyncs = Log_GetLatest( 20 );
     ?><table><thead><tr><td>Revision</td><td>Developer</td><td>Type</td><td>Reason</td><td>Date</td></tr></thead><tbody><?php
     $i = 1;
     foreach ( $lastSyncs as $sync ) {

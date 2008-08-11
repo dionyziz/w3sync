@@ -1,5 +1,5 @@
 <?php
-    function Sync( $revision, $username, $comment ) {
+    function Sync_Core( $revision, $username, $comment ) {
         exec( "wget -O - http://zeus.blogcube.net/sync/", $output, $ret );
         $data = implode( "\n", $output );
         preg_match( "/revision (?<rev>\w+)./", $data, $match );
@@ -9,17 +9,8 @@
         return $data;
     }
     
-    function getCurrentRevision() {
-        // get current rev. this will be the rev of the new synced version
-        $revstring = exec( "svn info /var/www/zino.gr/beta/phoenix/|grep Revision" );
-        preg_match( "/Revision: (?<rev>\w+)/", $revstring, $match );
-        $revision = $match[ 'rev' ];
-
-        return $revision;
-    }
-
-    function StaticSync( $revision, $username, $comment ) {
-        $revision = getCurrentRevision();
+    function Sync_Static( $revision, $username, $comment ) {
+        $revision = SVN_GetCurrentRevision();
 
         exec( "diff /var/www/zino.gr/static/css/global.css /var/www/zino.gr/static/css/global-beta.css", $output, $ret );
         exec( "diff /var/www/zino.gr/static/css/global.js /var/www/zino.gr/static/css/global-beta.js", $output, $ret );
