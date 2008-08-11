@@ -44,13 +44,17 @@
     function Log_GetLatest( $limit = 20 ) {
         $limit = ( int )$limit;
         $sql = "SELECT
-                    `sync`.*, MAX( previoussync.sync_rev )>`sync`.sync_rev AS rollback, `users`.*
+                    `sync`.*, previoussync.`sync_rev`>`sync`.sync_rev AS rollback, `users`.*
                 FROM
                     `sync` LEFT JOIN `users`
                         ON `sync_userid` = `user_id`
                     LEFT JOIN `sync` AS previoussync
                         ON `sync`.`sync_type`=previoussync.`sync_type`
                         AND `sync`.`sync_id`>previoussync.`sync_id`
+                    LEFT JOIN `sync` AS maxfilter
+                        ON previoussync.`sync_id`<maxfilter.`sync_id`
+                WHERE
+                    maxfilter.`sync_id` IS NULL
                 GROUP BY
                     `sync`.`sync_id`
                 ORDER BY 
