@@ -35,7 +35,12 @@
         foreach ( $diff as $i => $line ) {
             switch ( $line{ 0 } ) {
                 case '+':
-                    $diff[ $i ] = '<span class="added">' . $line . '</span>';
+                    if ( substr( $line, 0, 3 ) == '+++' ) {
+                        $diff[ $i ] = '<span class="file added">' . $line . '</span>';
+                    }
+                    else {
+                        $diff[ $i ] = '<span class="added">' . $line . '</span>';
+                    }
                     break;
                 case '-':
                     $diff[ $i ] = '<span class="removed">' . $line . '</span>';

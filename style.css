@@ -84,3 +84,6 @@ span.added {
 span.removed {
     color: #aa5555;
 }
+span.file {
+    font-weight: bold;
+}
