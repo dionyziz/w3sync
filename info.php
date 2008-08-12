@@ -49,7 +49,7 @@
         }
         $diff = implode( "<br />", $diff );
         echo $diff;
-        ?></pre><?php
+        ?></div><?php
     }
     include 'footer.php';
 ?>
