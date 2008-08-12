@@ -14,7 +14,7 @@ a, a:visited, a:active {
     color: #105cb6;
 }
 a:hover {
-        color: #000033;
+    color: #000033;
 }
 div.content {
     margin: 15px;
@@ -57,6 +57,7 @@ div.history div a {
 }
 div.history img {
     float: left;
+    padding: 20px 0 20px;
 }
 div.history div.selected {
     -moz-border-radius: 100%;
