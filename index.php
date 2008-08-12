@@ -95,7 +95,7 @@
     }
     ?></tbody></table></form>
 
-    <form id="rollback" action="sync.php" method="post" style="display:none">
+    <form id="rollback" action="sync.php" method="POST" style="display:none">
         <input type="hidden" name="comment" />
         <input type="hidden" name="revision" value="" />
         <input type="hidden" name="do" value="sync" />
@@ -167,7 +167,7 @@
             echo dateDiffText( $lock[ 'lock_created' ] );
             ?></td><td><?php
             if ( $_SERVER[ 'REMOTE_USER' ] == $lock[ 'user_name' ] ) {
-                ?><form style="display:inline" action="unlock.php" method="post">
+                ?><form style="display:inline" action="unlock.php" method="POST">
                     <input type="hidden" name="lockid" value="<?php
                     echo $lock[ 'lock_id' ];
                     ?>" /><input type="submit" value="Unlock" />
@@ -180,7 +180,7 @@
     if ( !isset( $lockusernames[ $_SERVER[ 'REMOTE_USER' ] ] ) ) { // don't allow them to add a second simultanious lock
         ?>
         <br /><br />
-        <form action="lock.php" method="post" onsubmit="return checkLockForm()">
+        <form action="lock.php" method="POST" onsubmit="return checkLockForm()">
             Reason: <input name="comment" value="" id="lockcomment" /> <input type="submit" value="Sync Lock" />
         </form><?php
     }
