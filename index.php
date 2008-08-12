@@ -106,7 +106,7 @@
         function Rollback( revision, anchor ) {
             var reason = prompt( 'Why do you want to rollback to revision ' + revision + '?' );
 
-            if ( reason == '' ) {
+            if ( reason === '' || reason === null ) {
                 return;
             }
 
