@@ -10,7 +10,10 @@
     }
 
     ?>
-    <div class="history"><?php
+    <div class="historycontainer">
+    <div class="history" style="width:<?php
+    echo count( $pivot ) * 100;
+    ?>px"><?php
     $latest = Log_GetLatest( 1 );
     $oldest = Log_GetLatest( 1, 'ASC' );
     assert( count( $latest ) == 1 ); // since at least one sync item exists (per check above)
@@ -40,7 +43,7 @@
     if ( $pivot[ count( $pivot ) - 1 ][ 'sync_id' ] != $latest[ 'sync_id' ] ) {
         ?><img src="images/bullet_go.png" alt="-&gt;" title="There were more recent syncs than this" /><?php
     }
-    ?></div><div class="eof"></div><?php
+    ?></div></div><div class="eof"></div><?php
 
     ?><ul><li><strong>Author:</strong> <a href="mailto:<?php
     echo htmlspecialchars( $sync[ 'user_name' ] );
