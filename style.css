@@ -39,6 +39,8 @@ div.history {
     background-color: #eee;
     padding: 10px;
     height: 40px;
+    width: 100%;
+    overflow: hidden;
     white-space: nowrap;
 }
 div.history div {
