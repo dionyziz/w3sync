@@ -143,7 +143,9 @@
 
     <?php
     if ( !count( $locks ) ) {
-        ?>No active sync locks are currently placed.<br />
+        ?>
+        <br /><br />
+        No active sync locks are currently placed.<br />
         <small>Use sync locks to enforce no syncs for a limited time.</small><?php
     }
     else {
