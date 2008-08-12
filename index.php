@@ -29,50 +29,55 @@
         }
         ?> requested a sync lock. You cannot currently sync.<?php
     }
-    else {
-        ?> What do you want to do?
-        <form method="POST" action="sync.php">
-            <input type="radio" name="do" value="sync" checked="checked" id="sync" onchange="radioChanged();" /><label for="sync">Sync</label><br />
-            <!-- <input type="radio" name="do" value="beta" />Beta Sync (fast for the user - might be broken)<br /> -->
-            <input type="radio" name="do" value="csssync" id="csssync" onchange="radioChanged();" /><label for="csssync">CSS and JS Sync</label><br />
-            <br />
+    ?>
+    <script type="text/javascript">
+        document.getElementById( 'comment' ).focus();
+        function radioChanged() {
+            if ( document.getElementById( 'csssync' ).checked ) {
+                document.getElementById( 'revision' ).style.display = 'none';
+            }
+            else {
+                document.getElementById( 'revision' ).style.display = '';
+            }
+            document.getElementById( 'comment' ).focus();
+        }
+        function Rollback( revision, anchor ) {
+            var reason = prompt( 'Why do you want to rollback to revision ' + revision + '?' );
+
+            if ( reason == '' ) {
+                return;
+            }
+
+            var form = document.getElementById( 'rollback' );
+            
+            form.getElementsByTagName( 'input' )[ 0 ].value = reason;
+            form.getElementsByTagName( 'input' )[ 1 ].value = revision;
+            form.submit();
+        }
+    </script>
+    <h2>Last syncs</h2><?php
+    $lastSyncs = Log_GetLatest( 20 );
+    ?><form method="POST" action="sync.php"><?php
+    ?><table><thead><tr><td>Revision</td><td>Developer</td><td>Type</td><td>Reason</td><td>Date</td><td>&nbsp;</td></tr></thead><tbody><?php
+    ?><tr><td>
             <div id="revision">
             Revision: <input type="text" value="<?php
             $revision = SVN_GetCurrentRevision();
             echo $revision;
             ?>" name="revision" /><br />
             </div>
-            Reason (required): <br />
-            <input name="comment" id="comment" /><br />
-
-            <script type="text/javascript">
-                document.getElementById( 'comment' ).focus();
-                function radioChanged() {
-                    if ( document.getElementById( 'csssync' ).checked ) {
-                        document.getElementById( 'revision' ).style.display = 'none';
-                    }
-                    else {
-                        document.getElementById( 'revision' ).style.display = '';
-                    }
-                    document.getElementById( 'comment' ).focus();
-                }
-                function Rollback( revision, anchor ) {
-                    var reason = prompt( 'Why do you want to rollback to revision ' + revision + '?' );
-
-                    if ( reason == '' ) {
-                        return;
-                    }
-                    anchor.parentNode.getElementsByTagName( 'input' )[ 0 ].value = reason;
-                    anchor.parentNode.submit();
-                }
-            </script>
+        </td><td><?php
+            echo htmlspecialchars( $_SERVER[ 'REMOTE_USER' ] );
+        ?></td><td>
+            <select name="do" onchange="radioChanged();">
+                <option value="sync" selected="selected">Sync</option>
+                <option value="csssync">CSS and JS Sync</option>
+            </select>
+        </td><td>
+            <input name="comment" id="comment" />
+        </td><td>
             <input type="submit" value="Deploy to Production" />
-        </form><?php
-    }
-    ?>
-    <h2>Last syncs</h2><?php
-    $lastSyncs = Log_GetLatest( 20 );
-    ?><table><thead><tr><td>Revision</td><td>Developer</td><td>Type</td><td>Reason</td><td>Date</td><td>&nbsp;</td></tr></thead><tbody><?php
+    </td></tr><?php
     $i = 1;
     $latestrevision = Log_GetLatestByType( 'sync' );
     $latestrevision = $latestrevision[ 'sync_rev' ];
@@ -115,21 +120,21 @@
         }
         ?></td><td><?php
         if ( $sync[ 'sync_type' ] == 'sync' && $sync[ 'sync_rev' ] < $latestrevision ) {
-            ?><form action="sync.php" method="post">
-                <input type="hidden" name="comment" />
-                <input type="hidden" name="do" value="sync" />
-                <input type="hidden" name="revision" value="<?php
-                echo $sync[ 'sync_rev' ];
-                ?>" />
-                <a style="font-size:70%" href="" onclick="Rollback( '<?php
-                echo $sync[ 'sync_rev' ];
-                ?>', this );return false;">Rollback to here</a>
-            </form><?php
+            ?><a class="rollback" href="" onclick="Rollback( '<?php
+            echo $sync[ 'sync_rev' ];
+            ?>' );return false;">Rollback to here</a><?php
         }
         ?></td></tr><?php
         ++$i;
     }
-    ?></tbody></table>
+    ?></tbody></table></form>
+
+    <form id="rollback" action="sync.php" method="post" style="display:none">
+        <input type="hidden" name="comment" />
+        <input type="hidden" name="revision" value="" />
+        <input type="hidden" name="do" value="sync" />
+    </form>
+
     <h2>Sync locks</h2><?php
     if ( !count( $locks ) ) {
         ?>No active sync locks are currently placed.<br />

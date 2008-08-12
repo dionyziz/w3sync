@@ -44,6 +44,9 @@ textarea {
     width: 100%;
     height: 50px;
 }
+a.rollback {
+    font-size: 75%;
+}
 table thead tr td {
     font-weight: bold;
 }
