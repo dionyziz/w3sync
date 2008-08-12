@@ -35,12 +35,10 @@
     ?><form method="POST" action="sync.php" onsubmit="return checkForm()"><?php
     ?><table><thead><tr><td>Revision</td><td>Developer</td><td>Reason</td><td>Date</td><td>&nbsp;</td></tr></thead><tbody><?php
     ?><tr><td>
-            <div id="revision">
             <input type="text" value="<?php
             $revision = SVN_GetCurrentRevision();
             echo $revision;
             ?>" name="revision" /><br />
-            </div>
         </td><td><?php
             echo htmlspecialchars( $_SERVER[ 'REMOTE_USER' ] );
         ?></td><td>
@@ -122,6 +120,13 @@
                 alert( 'Please provide a reason for your sync' );
                 document.getElementById( 'comment' ).focus();
                 return false;
+            }
+            if ( document.getElementById( 'revision' ).value < <?php
+            echo $latestrevision;
+            ?> - 100 ) {
+                if ( !confirm( "You are about to sync to revision " + document.getElementById( 'revision' ) + ". This is a substancially old revision!\nAre you sure you want to sync?" ) ) {
+                    return false;
+                }
             }
             return true;
         }
