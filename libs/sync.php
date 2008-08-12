@@ -7,7 +7,7 @@
         $static = Sync_Static( $revision, $username, $comment );
         $core = Sync_Core( $revision, $username, $comment );
 
-        $data = "Syncing core...\n" . $core . "Syncing static...\n" . $static;
+        $data = "Syncing core...\n" . $core . "\n\nSyncing static...\n" . $static;
 
         $syncid = Log_Create( $username, $comment, $revision, $data );
 
