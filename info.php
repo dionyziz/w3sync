@@ -40,33 +40,8 @@
         ?><img src="images/bullet_go.png" alt="-&gt;" title="There were more recent syncs than this" /><?php
     }
     ?><a id="endofhistory"></a></div><div class="eof"></div>
-    <script type="text/javascript">
-        ( function () {
-            var history = document.getElementById( 'history' );
-            var divs = history.getElementsByTagName( 'div' );
-            var j = 0;
-
-            document.getElementById( 'endofhistory' ).scrollIntoView( false );
-
-            return;
-
-            for ( i = 0; i < divs.length; ++i ) {
-                if ( divs[ i ].className == 'selected' ) {
-                    j = i;
-                    i -= 3;
-                    if ( i < 0 ) {
-                        i = 0;
-                    }
-                    divs[ i ].scrollIntoView();
-                    break;
-                }
-            }
-
-            divs[ j ].scrollIntoView();
-        } )();
-    </script><?php
-
-    ?><ul><li><strong>Author:</strong> <a href="mailto:<?php
+    
+    <ul><li><strong>Author:</strong> <a href="mailto:<?php
     echo htmlspecialchars( $sync[ 'user_name' ] );
     ?>@kamibu.com"><?php
     echo htmlspecialchars( $sync[ 'user_name' ] );
@@ -101,7 +76,30 @@
     }
     $diff = implode( "<br />", $diff );
     echo $diff;
-    ?></div><?php
+    ?></div>
+    <script type="text/javascript">
+        ( function () {
+            var history = document.getElementById( 'history' );
+            var divs = history.getElementsByTagName( 'div' );
+            var j = 0;
+
+            document.getElementById( 'endofhistory' ).scrollIntoView( false );
+
+            for ( i = 0; i < divs.length; ++i ) {
+                if ( divs[ i ].className == 'selected' ) {
+                    j = i;
+                    i -= 3;
+                    if ( i < 0 ) {
+                        i = 0;
+                    }
+                    divs[ i ].scrollIntoView();
+                    break;
+                }
+            }
+
+            divs[ j ].scrollIntoView();
+        } )();
+    </script><?php
 
     include 'footer.php';
 ?>
