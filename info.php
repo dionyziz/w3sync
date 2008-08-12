@@ -9,8 +9,6 @@
         return include 'footer.php';
     }
 
-    ?>
-    <div class="historycontainer"><?php
     $latest = Log_GetLatest( 1 );
     $oldest = Log_GetLatest( 1, 'ASC' );
     assert( count( $latest ) == 1 ); // since at least one sync item exists (per check above)
@@ -18,7 +16,7 @@
     $latest = $latest[ 0 ];
     $oldest = $oldest[ 0 ];
     $pivot = Log_GetPivot( $syncid, 25 );
-    ?><div class="history"><?php
+    ?><div id="history" class="history"><?php
     if ( $pivot[ 0 ][ 'sync_id' ] != $oldest[ 'sync_id' ] ) {
         ?><img src="images/bullet_go.png" alt="-&gt;" title="There were older syncs than this" /><?php
     }
@@ -41,7 +39,25 @@
     if ( $pivot[ count( $pivot ) - 1 ][ 'sync_id' ] != $latest[ 'sync_id' ] ) {
         ?><img src="images/bullet_go.png" alt="-&gt;" title="There were more recent syncs than this" /><?php
     }
-    ?></div></div><div class="eof"></div><?php
+    ?></div><div class="eof"></div>
+    <script type="text/javascript">
+        function () {
+            var history = document.getElementById( 'history' );
+            var divs = history.getElementsByTagName( 'div' );
+            divs[ divs.length - 1 ].scrollIntoView();
+
+            for ( i = 0; i < divs.length; ++i ) {
+                if ( divs[ i ].className == 'selected' ) {
+                    --i;
+                    if ( i < 0 ) {
+                        i = 0;
+                    }
+                    divs[ i ].scrollIntoView();
+                    return;
+                }
+            }
+        }();
+    </script><?php
 
     ?><ul><li><strong>Author:</strong> <a href="mailto:<?php
     echo htmlspecialchars( $sync[ 'user_name' ] );
