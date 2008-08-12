@@ -44,7 +44,7 @@
         </td><td><?php
             echo htmlspecialchars( $_SERVER[ 'REMOTE_USER' ] );
         ?></td><td>
-            <select name="do" onchange="radioChanged();">
+            <select name="do" onchange="radioChanged();" id="selecttype">
                 <option value="sync" selected="selected">Sync</option>
                 <option value="csssync">CSS and JS Sync</option>
             </select>
@@ -113,7 +113,7 @@
     <script type="text/javascript">
         document.getElementById( 'comment' ).focus();
         function radioChanged() {
-            if ( document.getElementById( 'csssync' ).checked ) {
+            if ( document.getElementById( 'selecttype' ).value = 'csssync' ) {
                 document.getElementById( 'revision' ).style.display = 'none';
             }
             else {
