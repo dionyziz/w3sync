@@ -29,8 +29,6 @@
         }
         ?> requested a sync lock. You cannot currently sync.<?php
     }
-    ?>
-    <h2>Last syncs</h2><?php
     $lastSyncs = Log_GetLatest( 20 );
     ?><form method="POST" action="sync.php" onsubmit="return checkForm()"><?php
     ?><table><thead><tr><td>Revision</td><td>Developer</td><td>Reason</td><td>Date</td><td>&nbsp;</td></tr></thead><tbody><?php
@@ -130,6 +128,14 @@
             }
             return true;
         }
+        function checkLockForm() {
+            if ( document.getElementById( 'lockcomment' ).value == '' ) {
+                alert( 'Please provide a reason for your lock' );
+                document.getElementById( 'lockcomment' ).focus();
+                return false;
+            }
+            return true;
+        }
     </script>
 
     <h2>Sync locks</h2><?php
@@ -167,9 +173,8 @@
     ?>
     <br /><br />
     Place a sync lock:<br />
-    <form action="lock.php" method="post">
-        Reason (required): <br />
-        <textarea name="comment"></textarea><br />
+    <form action="lock.php" method="post" onsubmit="checkLockForm()">
+        Reason: <input name="comment" value="" id="lockcomment" /><br />
 
         <input type="submit" value="Sync Lock" />
     </form><?php

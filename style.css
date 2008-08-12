@@ -40,6 +40,9 @@ table tr.l {
 input#comment {
     width: 200px;
 }
+input#lockcomment {
+    width: 200px;
+}
 textarea {
     margin: 5px;
     width: 100%;
