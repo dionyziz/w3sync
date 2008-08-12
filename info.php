@@ -21,7 +21,7 @@
         ?></li><li><strong>Reason:</strong> <?php
         echo htmlspecialchars( $sync[ 'sync_comment' ] );
         ?></li><li><strong>Date:</strong> <?php
-        echo date( 'r', $sync[ 'sync_date' ] );
+        echo dateDiffText( $sync[ 'sync_created' ] );
         ?></li><li><strong>Type:</strong> <?php
         echo htmlspecialchars( $sync[ 'sync_type' ] );
         ?></li></ul>
