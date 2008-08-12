@@ -55,6 +55,8 @@ div.history div {
 a#endofhistory {
     display: -moz-inline-box;
     display: inline-block;
+    width: 1px;
+    height: 1px;
 }
 div.history div:hover {
     background-color: #eef;
