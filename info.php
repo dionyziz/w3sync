@@ -52,7 +52,7 @@
     echo dateDiffText( $sync[ 'sync_created' ] );
     ?></li></ul>
         
-    <div class="diff" id="diff" style="display:none"><?php
+    <div class="diff" id="diff"><?php
     $diff = $sync[ 'sync_diff' ];
     $diff = htmlspecialchars( $diff );
     $diff = str_replace( "\t", "    ", $diff );
