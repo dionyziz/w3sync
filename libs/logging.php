@@ -47,15 +47,19 @@
         while ( $row = mysql_fetch_array( $res ) ) {
             $ret[ $row[ 'sync_id' ] ] = $row;
         }
-        ksort( $ret );
+        ksort( $ret ); // in ascending chronological order
+        $ret = array_values( $ret );
         return $ret;
     }
 
-    function Log_GetLatest( $limit = 20 ) {
+    function Log_GetLatest( $limit = 20, $order = 'DESC' ) {
         $limit = ( int )$limit;
         // the two left joins with itself are for retrieving the boolean "rollback" value which determines
         // whether the sync is a rollback -- essentially we're looking for the exact previous sync_id
         // for each row and compare its sync_rev value with the current row's sync_rev value.
+        if ( $order != 'ASC' && $order != 'DESC' ) {
+            $order = 'DESC';
+        }
         $sql = "SELECT
                     `sync`.*, previoussync.`sync_rev`>`sync`.sync_rev AS rollback, `users`.*
                 FROM
@@ -70,7 +74,7 @@
                 GROUP BY
                     `sync`.`sync_id`
                 ORDER BY 
-                    `sync_id` DESC
+                    `sync_id` " . $order . "
                 LIMIT " . $limit;
         $res = mysql_query( $sql ) or die( mysql_error() );
         $return = array();

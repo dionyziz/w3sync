@@ -10,7 +10,16 @@
     }
 
     ?><div class="history"><?php
+    $latest = Log_GetLatest( 1 );
+    $oldest = Log_GetLatest( 1, 'ASC' );
+    assert( count( $latest ) == 1 ); // since at least one sync item exists (per check above)
+    assert( count( $oldest ) == 1 );
+    $latest = $latest[ 0 ];
+    $oldest = $oldest[ 0 ];
     $pivot = Log_GetPivot( $syncid, 5 );
+    if ( $pivot[ 0 ][ 'sync_id' ] != $oldest[ 'sync_id' ] ) {
+        ?><img src="images/bullet_go.png" alt="-&gt;" title="There were older syncs than this" /><?php
+    }
     foreach ( $pivot as $item ) {
         ?><div<?php
         if ( $item[ 'sync_id' ] == $sync[ 'sync_id' ] ) {
@@ -26,6 +35,9 @@
         ?> to <?php
         echo $item[ 'sync_rev' ];
         ?></a></div><?php
+    }
+    if ( $pivot[ count( $pivot ) - 1 ][ 'sync_id' ] != $latest[ 'sync_id' ] ) {
+        ?><img src="images/bullet_go.png" alt="-&gt;" title="There were more recent syncs than this" /><?php
     }
     ?></div><div class="eof"></div><?php
 
