@@ -36,7 +36,7 @@
                     `sync` LEFT JOIN `users`
                         ON `sync_userid` = `user_id`
                     LEFT JOIN `sync` AS previoussync
-                        `sync`.`sync_id`>previoussync.`sync_id`
+                        ON `sync`.`sync_id`>previoussync.`sync_id`
                     LEFT JOIN `sync` AS maxfilter
                         ON previoussync.`sync_id`<maxfilter.`sync_id` AND maxfilter.`sync_id`<`sync`.`sync_id`
                 WHERE
