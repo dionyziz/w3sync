@@ -48,6 +48,8 @@
 
             document.getElementById( 'endofhistory' ).scrollIntoView( false );
 
+            return;
+
             for ( i = 0; i < divs.length; ++i ) {
                 if ( divs[ i ].className == 'selected' ) {
                     j = i;
