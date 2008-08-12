@@ -32,17 +32,25 @@ form {
 ul {
     list-style: none;
 }
-ul.history {
+div.history {
     list-style: none
     border: 1px solid #777;
     background-color: #eee;
     padding: 10px;
 }
-ul.history li {
+div.history div {
     float: left;
     border: 1px solid #666;
     background-color: #fff;
     padding: 5px;
+    margin: 8px;
+}
+div.history div.select {
+    border: 3px solid #666;
+    -moz-border-radius: 100%;
+}
+div.eof {
+    clear: both;
 }
 table {
     width: 100%;

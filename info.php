@@ -9,10 +9,10 @@
         return include 'footer.php';
     }
 
-    ?><ul class="history"><?php
+    ?><div class="history"><?php
     $pivot = Log_GetPivot( $syncid );
     foreach ( $pivot as $item ) {
-        ?><li<?php
+        ?><div<?php
         if ( $item[ 'sync_id' ] == $sync[ 'sync_id' ] ) {
             ?> class="selected"<?php
         }
@@ -20,9 +20,9 @@
         echo $item[ 'sync_id' ];
         ?>">Revision <?php
         echo $item[ 'sync_rev' ];
-        ?></a></li><?php
+        ?></a></div><?php
     }
-    ?></ul><?php
+    ?><div class="eof"></div></div><?php
 
     ?><ul><li><strong>Author:</strong> <a href="mailto:<?php
     echo htmlspecialchars( $sync[ 'user_name' ] );
