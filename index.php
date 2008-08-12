@@ -141,13 +141,15 @@
         }
     </script>
 
-    <h2>Sync locks</h2><?php
+    <?php
     if ( !count( $locks ) ) {
         ?>No active sync locks are currently placed.<br />
         <small>Use sync locks to enforce no syncs for a limited time.</small><?php
     }
     else {
-        ?><table><thead><tr><td>Developer</td><td>Reason</td><td>Date</td><td>&nbsp;</td></tr></thead><tbody><?php
+        ?><h2>Sync locks</h2>
+        <table><thead><tr><td>Developer</td><td>Reason</td><td>Date</td><td>&nbsp;</td></tr></thead><tbody><?php
+        $i = 1;
         foreach ( $locks as $lock ) {
             ?><tr<?php
             if ( $i % 2 == 0 ) {
