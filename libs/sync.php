@@ -2,8 +2,10 @@
     function Sync( $revision, $username, $comment ) {
         $revision = ( int )$revision;
 
-        $core = Sync_Core( $revision, $username, $comment );
+        // the order is significant; static must be synced before the core so that the changes in css/js are propagated
+        // before the version invalidation kick in
         $static = Sync_Static( $revision, $username, $comment );
+        $core = Sync_Core( $revision, $username, $comment );
 
         $data = "Syncing core...\n" . $core . "Syncing static...\n" . $static;
 
@@ -16,8 +18,13 @@
         exec( "wget -O - http://zeus.blogcube.net/sync/beta.php?revision=" . $revision, $output, $ret );
         $data = implode( "\n", $output );
 
-        $latestsync = Log_GetLatestByType( 'sync' );
-        $previousrevision = $latestsync[ 'sync_rev' ];
+        $latestsync = Log_GetLatest( 1 );
+        if ( empty( $latestsync ) ) {
+            $previousrevision = 0;
+        }
+        else {
+            $previousrevision = $latestsync[ 0 ][ 'sync_rev' ];
+        }
         $diff = SVN_Diff( $previousrevision, $revision );
         if ( empty( $diff ) ) {
             $diff = "(none)";
