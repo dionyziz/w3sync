@@ -12,5 +12,7 @@
 
     Lock_Disable( $_POST[ 'lockid' ], $_SERVER[ 'REMOTE_USER' ] );
 
-    ?>Your sync lock has been removed.<?php
+    ob_clean();
+    header( 'Locaiton: /' );
+    return;
 ?>
