@@ -124,7 +124,7 @@
             if ( document.getElementById( 'revision' ).value < <?php
             echo $latestrevision;
             ?> - 100 ) {
-                if ( !confirm( "You are about to sync to revision " + document.getElementById( 'revision' ) + ". This is a substancially old revision!\nAre you sure you want to sync?" ) ) {
+                if ( !confirm( "You are about to sync to revision " + document.getElementById( 'revision' ).value + ". This is a substancially old revision!\nAre you sure you want to sync?" ) ) {
                     return false;
                 }
             }
