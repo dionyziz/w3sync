@@ -40,7 +40,7 @@
                 GROUP BY
                     `sync`.`sync_id`
                 ORDER BY 
-                    " . $syncid . " - `sync_id` DESC
+                    " . $syncid . " - `sync`.`sync_id` DESC
                 LIMIT " . $limit;
         $res = mysql_query( $sql ) or die( mysql_error() );
         $ret = array();
