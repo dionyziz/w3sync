@@ -25,4 +25,6 @@
 
     ?>A sync lock was placed. Make sure you remove it when you're done working.<br />
     <small>Prefer to use masking instead of sync locks to assist your fellow hackers in their daily tasks.</small><?php
+
+    include 'footer.php';
 ?>
