@@ -31,11 +31,13 @@
     <body>
         <div class="content">
             <div class="username">
+            <?php
+            echo htmlspecialchars( $_SERVER[ 'REMOTE_USER' ] );
+            ?>@kamibu.com
             <img src="http://www.kamibu.com/images/<?php
             echo htmlspecialchars( $_SERVER[ 'REMOTE_USER' ] );
             ?>.jpg" style="width:16px;height:16px" alt="" title="<?php
             echo htmlspecialchars( $_SERVER[ 'REMOTE_USER' ] );
-            ?>" /> <?php
-            echo htmlspecialchars( $_SERVER[ 'REMOTE_USER' ] );
-            ?>@kamibu.com</div>
+            ?>" />
+            </div>
             <h1><a href="index.php">Deploy Zino</a></h1>
