@@ -38,7 +38,7 @@
             <input type="text" value="<?php
             $revision = SVN_GetCurrentRevision();
             echo $revision;
-            ?>" name="revision" /><br />
+            ?>" name="revision" id="revision" /><br />
         </td><td><?php
             echo htmlspecialchars( $_SERVER[ 'REMOTE_USER' ] );
         ?></td><td>
