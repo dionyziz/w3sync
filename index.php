@@ -113,7 +113,7 @@
     <script type="text/javascript">
         document.getElementById( 'comment' ).focus();
         function radioChanged() {
-            if ( document.getElementById( 'selecttype' ).value = 'csssync' ) {
+            if ( document.getElementById( 'selecttype' ).value == 'csssync' ) {
                 document.getElementById( 'revision' ).style.display = 'none';
             }
             else {
