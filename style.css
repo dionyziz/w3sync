@@ -31,7 +31,7 @@ form {
 }
 ul {
     list-style: none;
-    margin: 0;
+    margin: 10px 0 10px 0;
     padding: 0;
 }
 div.history {
@@ -56,8 +56,12 @@ div.history div a {
     display: block;
 }
 div.history div.selected {
-    border: 3px solid #666;
     -moz-border-radius: 100%;
+    background-color: #999;
+    color: white;
+}
+div.history div.selected a, div.history div.selected a:hover {
+    color: white;
 }
 div.eof {
     clear: both;

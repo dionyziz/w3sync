@@ -18,7 +18,12 @@
         }
         ?>><a href="info.php?syncid=<?php
         echo $item[ 'sync_id' ];
-        ?>">Revision <?php
+        ?>"><?php
+        echo htmlspecialchars( $item[ 'user_name' ] );
+        if ( $item[ 'rollback' ] ) {
+            ?> back<?php
+        }
+        ?> to <?php
         echo $item[ 'sync_rev' ];
         ?></a></div><?php
     }
