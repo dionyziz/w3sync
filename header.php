@@ -1,7 +1,9 @@
 <?php
+    define( 'WEB_ROOT', 'https://code.kamibu.com/sync/' );
+
     if( !isset( $_SERVER[ 'HTTPS' ] ) ) {
         header( "301 Moved Permanently" );
-        header( "Location: https://code.kamibu.com/sync/" );
+        header( "Location: " . WEB_ROOT );
         die();
     }
 
@@ -35,4 +37,6 @@
             echo htmlspecialchars( $_SERVER[ 'REMOTE_USER' ] );
             ?>@kamibu.com
             </div>
-            <h1><a href="">Deploy Zino</a></h1>
+            <h1><a href="<?php
+            echo WEB_ROOT;
+            ?>">Deploy Zino</a></h1>

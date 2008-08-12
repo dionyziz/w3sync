@@ -13,6 +13,6 @@
     Lock_Disable( $_POST[ 'lockid' ], $_SERVER[ 'REMOTE_USER' ] );
 
     ob_clean();
-    header( 'Location: ' );
+    header( 'Location: ' . WEB_ROOT );
     return;
 ?>
