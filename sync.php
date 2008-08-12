@@ -15,6 +15,13 @@
         include 'footer.php';
         return;
     }
+    $locks = Lock_GetActive();
+    if ( !empty( $locks ) ) {
+        ?><p>Could not sync at this time, because there are active sync locks.</p><?php
+        include 'footer.php';
+        return;
+    }
+
     $comment = $_POST[ 'comment' ];
     $revision =  $_POST[ 'revision' ];
 

@@ -32,7 +32,7 @@
     ?>
     <h2>Last syncs</h2><?php
     $lastSyncs = Log_GetLatest( 20 );
-    ?><form method="POST" action="sync.php"><?php
+    ?><form method="POST" action="sync.php" onsubmit="return checkForm()"><?php
     ?><table><thead><tr><td>Revision</td><td>Developer</td><td>Reason</td><td>Date</td><td>&nbsp;</td></tr></thead><tbody><?php
     ?><tr><td>
             <div id="revision">
@@ -46,7 +46,7 @@
         ?></td><td>
             <input name="comment" id="comment" />
         </td><td>
-            <input type="submit" value="Deploy to Production" />
+        <input type="submit" value="Deploy to Production" />
     </td></tr><?php
     $i = 1;
     $latestrevision = $lastSyncs[ 0 ][ 'sync_rev' ];
@@ -116,6 +116,14 @@
             form.getElementsByTagName( 'input' )[ 0 ].value = reason;
             form.getElementsByTagName( 'input' )[ 1 ].value = revision;
             form.submit();
+        }
+        function checkForm() {
+            if ( document.getElementById( 'comment' ).value == '' ) {
+                alert( 'Please provide a reason for your sync' );
+                document.getElementById( 'comment' ).focus();
+                return false;
+            }
+            return true;
         }
     </script>
 
