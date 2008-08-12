@@ -20,6 +20,7 @@
     if ( $pivot[ 0 ][ 'sync_id' ] != $oldest[ 'sync_id' ] ) {
         ?><img src="images/bullet_go.png" alt="-&gt;" title="There were older syncs than this" /><?php
     }
+    $i = 0;
     foreach ( $pivot as $item ) {
         ?><div<?php
         if ( $item[ 'sync_id' ] == $sync[ 'sync_id' ] ) {
@@ -35,6 +36,10 @@
         ?> to <?php
         echo $item[ 'sync_rev' ];
         ?></a></div><?php
+        if ( $i != count( $pivot ) - 1 ) {
+            ?><img src="images/bullet_go.png" alt="-&gt;" /><?php
+        }
+        ++$i;
     }
     if ( $pivot[ count( $pivot ) - 1 ][ 'sync_id' ] != $latest[ 'sync_id' ] ) {
         ?><img src="images/bullet_go.png" alt="-&gt;" title="There were more recent syncs than this" /><?php
