@@ -19,7 +19,7 @@
     $oldest = $oldest[ 0 ];
     $pivot = Log_GetPivot( $syncid, 25 );
     ?><div class="history" style="width:<?php
-    echo count( $pivot ) * 150;
+    echo count( $pivot ) * 180;
     ?>px"><?php
     if ( $pivot[ 0 ][ 'sync_id' ] != $oldest[ 'sync_id' ] ) {
         ?><img src="images/bullet_go.png" alt="-&gt;" title="There were older syncs than this" /><?php
