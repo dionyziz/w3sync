@@ -22,7 +22,7 @@
         echo $item[ 'sync_rev' ];
         ?></a></div><?php
     }
-    ?><div class="eof"></div></div><?php
+    ?></div><div class="eof"></div><?php
 
     ?><ul><li><strong>Author:</strong> <a href="mailto:<?php
     echo htmlspecialchars( $sync[ 'user_name' ] );
