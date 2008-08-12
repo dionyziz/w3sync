@@ -32,7 +32,7 @@
     }
     $lastSyncs = Log_GetLatest( 15 );
     ?><form method="POST" action="sync.php" onsubmit="return checkForm()"><?php
-    ?><table><thead><tr><td>Revision</td><td>Developer</td><td>Reason</td><td>Date</td><td>&nbsp;</td></tr></thead><tbody><?php
+    ?><table><thead><tr><td>Revision</td><td>Developer</td><td>Reason</td><td>When</td><td>&nbsp;</td></tr></thead><tbody><?php
     if ( !count( $locks ) ) {
         ?><tr><td>
                 <input type="text" value="<?php
@@ -150,7 +150,7 @@
     }
     else {
         ?><h2>Sync locks</h2>
-        <table><thead><tr><td>Developer</td><td>Reason</td><td>Date</td><td>&nbsp;</td></tr></thead><tbody><?php
+        <table><thead><tr><td>Developer</td><td>Reason</td><td>When</td><td>&nbsp;</td></tr></thead><tbody><?php
         $i = 1;
         foreach ( $locks as $lock ) {
             ?><tr<?php
