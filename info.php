@@ -64,8 +64,6 @@
 
             document.getElementsByTagName( 'html' )[ 0 ].scrollIntoView( true );
         }
-
-        scrollToRevision();
     </script>
     
     <ul><li><strong>Author:</strong> <a href="mailto:<?php
