@@ -33,6 +33,7 @@ table {
     width: 100%;
     border: 1px solid #333;
     border-collapse: collapse;
+    -moz-border-radius: 5px;
 }
 table tr.l {
     background-color: #eee;
