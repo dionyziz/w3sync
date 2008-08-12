@@ -55,6 +55,9 @@ div.history div a {
     padding: 5px;
     display: block;
 }
+div.history img {
+    float: left;
+}
 div.history div.selected {
     -moz-border-radius: 100%;
     background-color: #999;
