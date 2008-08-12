@@ -21,7 +21,7 @@ div.content {
 }
 div.username {
     position: absolute;
-    right: 10px;
+    right: 20px;
     top: 10px;
     font-weight: bold;
     font-size: 80%;
@@ -97,4 +97,5 @@ span.file {
 div.copy {
     color: #aaa;
     font-size: 75%;
+    margin: 20px 0 10px 0;
 }
