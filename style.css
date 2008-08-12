@@ -40,7 +40,7 @@ div.history {
     background-color: #eee;
     padding: 10px;
     height: 45px;
-    overflow: hidden;
+    overflow: auto;
 }
 div.history div {
     float: left;
