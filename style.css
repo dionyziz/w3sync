@@ -40,7 +40,8 @@ div.history {
     padding: 10px;
     height: 40px;
     width: 100%;
-    overflow: hidden;
+    overflow: auto;
+    vertical-align: top;
     white-space: nowrap;
 }
 div.history div {
@@ -48,6 +49,7 @@ div.history div {
     display: -moz-inline-box;
     display: inline-block;
     margin: 8px;
+    vertical-align: top;
     background-color: #fff;
 }
 div.history div:hover {
