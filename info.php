@@ -34,12 +34,12 @@
         }
         ?> to <?php
         echo $item[ 'sync_rev' ];
-        ?></a></div><a id="endofhistory"></a><?php
+        ?></a></div><?php
     }
     if ( $pivot[ count( $pivot ) - 1 ][ 'sync_id' ] != $latest[ 'sync_id' ] ) {
         ?><img src="images/bullet_go.png" alt="-&gt;" title="There were more recent syncs than this" /><?php
     }
-    ?></div><div class="eof"></div>
+    ?><a id="endofhistory"></a></div><div class="eof"></div>
     <script type="text/javascript">
         ( function () {
             var history = document.getElementById( 'history' );
