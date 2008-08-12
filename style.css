@@ -51,9 +51,9 @@ div.history div a {
     background-color: #fff;
 }
 div.history div a:hover {
-    background-color: #9cf;
+    background-color: #9af;
 }
-div.history div.select {
+div.history div.selected {
     border: 3px solid #666;
     -moz-border-radius: 100%;
 }
