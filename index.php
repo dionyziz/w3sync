@@ -157,7 +157,7 @@
             ?></a></td><td><?php
             echo htmlspecialchars( $lock[ 'lock_reason' ] );
             ?></td><td><?php
-            echo date( "r", strtotime( $lock[ 'lock_created' ] ) );
+            echo dateDiffText( $lock[ 'lock_created' ] );
             ?></td><td><?php
             if ( $_SERVER[ 'REMOTE_USER' ] == $lock[ 'user_name' ] ) {
                 ?><form style="display:inline" action="unlock.php" method="post">
@@ -172,11 +172,8 @@
     }
     ?>
     <br /><br />
-    Place a sync lock:<br />
-    <form action="lock.php" method="post" onsubmit="checkLockForm()">
-        Reason: <input name="comment" value="" id="lockcomment" /><br />
-
-        <input type="submit" value="Sync Lock" />
+    <form action="lock.php" method="post" onsubmit="return checkLockForm()">
+        Reason: <input name="comment" value="" id="lockcomment" /> <input type="submit" value="Sync Lock" />
     </form><?php
     include 'footer.php';
 ?>
