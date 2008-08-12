@@ -12,7 +12,7 @@
         return mysql_insert_id();
     }
 
-    function Log_Mail( $username, $comment, $rev, $type, $diff ) {
+    function Log_Mail( $username, $comment, $rev, $diff ) {
         if ( !preg_match( '#^[a-z0-9-\_]+$#', $username ) ) {
             return;
         }
