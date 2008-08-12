@@ -25,7 +25,7 @@
         mail( "svn@kamibu.com", "[SYNC] $rev - $comment", $text, "From: $username@kamibu.com" );
     }
 
-    function Log_GetPivot( $syncid = 5, $limit = 10 ) {
+    function Log_GetPivot( $syncid, $limit = 10 ) {
         $sql = "SELECT
                     `sync`.*, previoussync.`sync_rev`>`sync`.sync_rev AS rollback, `users`.*
                 FROM
@@ -40,7 +40,7 @@
                 GROUP BY
                     `sync`.`sync_id`
                 ORDER BY 
-                    " . $syncid . " - `sync`.`sync_id` ASC
+                    ABS( " . $syncid . " - `sync`.`sync_id` ) ASC
                 LIMIT " . $limit;
         $res = mysql_query( $sql ) or die( mysql_error() );
         $ret = array();
