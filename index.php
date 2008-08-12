@@ -31,8 +31,8 @@
         ?> requested a sync lock. You cannot currently sync.<?php
     }
     $lastSyncs = Log_GetLatest( 15 );
-    ?><form method="POST" action="sync.php" onsubmit="return checkForm()"><?php
-    ?><table><thead><tr><td>Revision</td><td>Developer</td><td>Reason</td><td>When</td><td>&nbsp;</td></tr></thead><tbody><?php
+    ?><form method="POST" action="sync.php" onsubmit="return checkForm()"><br />
+    <table><thead><tr><td>Revision</td><td>Developer</td><td>Reason</td><td>When</td><td>&nbsp;</td></tr></thead><tbody><?php
     if ( !count( $locks ) ) {
         ?><tr><td>
                 <input type="text" value="<?php
