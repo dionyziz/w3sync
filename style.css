@@ -52,6 +52,10 @@ div.history div {
     vertical-align: top;
     background-color: #fff;
 }
+a#endofhistory {
+    display: -moz-inline-box;
+    display: inline-block;
+}
 div.history div:hover {
     background-color: #eef;
 }
@@ -61,6 +65,7 @@ div.history div a {
 }
 div.history img {
     padding: 14px 0 14px;
+    display: -moz-inline-box;
     display: inline-block;
 }
 div.history div.selected {
