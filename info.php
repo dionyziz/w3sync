@@ -9,7 +9,8 @@
         return include 'footer.php';
     }
 
-    ?><div class="history"><?php
+    ?>
+    <div class="history"><?php
     $latest = Log_GetLatest( 1 );
     $oldest = Log_GetLatest( 1, 'ASC' );
     assert( count( $latest ) == 1 ); // since at least one sync item exists (per check above)
