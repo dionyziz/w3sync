@@ -48,7 +48,7 @@
 
             for ( i = 0; i < divs.length; ++i ) {
                 if ( divs[ i ].className == 'selected' ) {
-                    --i;
+                    i -= 3;
                     if ( i < 0 ) {
                         i = 0;
                     }
