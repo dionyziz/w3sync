@@ -29,6 +29,21 @@ div.username {
 form {
     margin-top: 5px;
 }
+ul {
+    list-style: none;
+}
+ul.history {
+    list-style: none
+    border: 1px solid #777;
+    background-color: #eee;
+    padding: 10px;
+}
+ul.history li {
+    float: left;
+    border: 1px solid #666;
+    background-color: #fff;
+    padding: 5px;
+}
 table {
     width: 100%;
     border: 1px solid #333;

@@ -25,6 +25,32 @@
         mail( "svn@kamibu.com", "[SYNC] $rev - $comment", $text, "From: $username@kamibu.com" );
     }
 
+    function Log_GetPivot( $syncid = 5, $limit = 10 ) {
+        $sql = "SELECT
+                    `sync`.*, previoussync.`sync_rev`>`sync`.sync_rev AS rollback, `users`.*
+                FROM
+                    `sync` LEFT JOIN `users`
+                        ON `sync_userid` = `user_id`
+                    LEFT JOIN `sync` AS previoussync
+                        ON `sync`.`sync_id`>previoussync.`sync_id`
+                    LEFT JOIN `sync` AS maxfilter
+                        ON previoussync.`sync_id`<maxfilter.`sync_id` AND maxfilter.`sync_id`<`sync`.`sync_id`
+                WHERE
+                    maxfilter.`sync_id` IS NULL
+                GROUP BY
+                    `sync`.`sync_id`
+                ORDER BY 
+                    " . $syncid . " - `sync_id` DESC
+                LIMIT " . $limit;
+        $res = mysql_query( $sql ) or die( mysql_error() );
+        $ret = array();
+        while ( $row = mysql_fetch_array( $res ) ) {
+            $ret[ $row[ 'sync_id' ] ] = $row;
+        }
+        ksort( $ret );
+        return $ret;
+    }
+
     function Log_GetLatest( $limit = 20 ) {
         $limit = ( int )$limit;
         // the two left joins with itself are for retrieving the boolean "rollback" value which determines
