@@ -83,7 +83,7 @@
             var divs = history.getElementsByTagName( 'div' );
             var j = 0;
 
-            document.getElementById( 'endofhistory' ).scrollIntoView( false );
+            document.getElementById( 'endofhistory' ).scrollIntoView( true );
 
             for ( i = 0; i < divs.length; ++i ) {
                 if ( divs[ i ].className == 'selected' ) {
