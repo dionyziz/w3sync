@@ -56,11 +56,10 @@
                         i = 0;
                     }
                     divs[ i ].scrollIntoView();
-                    return;
+                    break;
                 }
             }
 
-            alert( j );
             divs[ j ].scrollIntoView();
         } )();
     </script><?php
