@@ -21,8 +21,6 @@
     }
     
     function Sync_Static( $revision, $username, $comment ) {
-        $revision = SVN_GetCurrentRevision();
-
         exec( "sudo -u syncer svn up /var/www/zino.gr/static/css --revision " . $revision, $output, $ret );
         exec( "sudo -u syncer svn up /var/www/zino.gr/static/js --revision " . $revision, $output, $ret );
         exec( SVN_ROOT . "etc/generate-static.php production /var/www/zino.gr/static/css > /var/www/zino.gr/static/css/global.css" );
