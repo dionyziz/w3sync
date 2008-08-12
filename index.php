@@ -33,7 +33,7 @@
     <h2>Last syncs</h2><?php
     $lastSyncs = Log_GetLatest( 20 );
     ?><form method="POST" action="sync.php"><?php
-    ?><table><thead><tr><td>Revision</td><td>Developer</td><td>Type</td><td>Reason</td><td>Date</td><td>&nbsp;</td></tr></thead><tbody><?php
+    ?><table><thead><tr><td>Revision</td><td>Developer</td><td>Reason</td><td>Date</td><td>&nbsp;</td></tr></thead><tbody><?php
     ?><tr><td>
             <div id="revision">
             <input type="text" value="<?php
@@ -44,11 +44,6 @@
         </td><td><?php
             echo htmlspecialchars( $_SERVER[ 'REMOTE_USER' ] );
         ?></td><td>
-            <select name="do" onchange="radioChanged();" id="selecttype">
-                <option value="sync" selected="selected">Sync</option>
-                <option value="csssync">CSS and JS Sync</option>
-            </select>
-        </td><td>
             <input name="comment" id="comment" />
         </td><td>
             <input type="submit" value="Deploy to Production" />
@@ -83,8 +78,6 @@
             ?></a><?php
         }
         ?></td><td><?php
-        echo $sync[ 'sync_type' ];
-        ?></td><td><?php
         echo $sync[ 'sync_comment' ];
         ?></td><td><?php
         if ( $sync[ 'sync_created' ] == '0000-00-00 00:00:00' ) {
@@ -94,7 +87,7 @@
             echo dateDiffText( $sync[ 'sync_created' ] );
         }
         ?></td><td><?php
-        if ( $sync[ 'sync_type' ] == 'sync' && $sync[ 'sync_rev' ] < $latestrevision ) {
+        if ( $sync[ 'sync_rev' ] < $latestrevision ) {
             ?><a class="rollback" href="" onclick="Rollback( '<?php
             echo $sync[ 'sync_rev' ];
             ?>' );return false;">Rollback to here</a><?php
@@ -112,9 +105,6 @@
 
     <script type="text/javascript">
         document.getElementById( 'comment' ).focus();
-        function radioChanged() {
-            document.getElementById( 'comment' ).focus();
-        }
         function Rollback( revision, anchor ) {
             var reason = prompt( 'Why do you want to rollback to revision ' + revision + '?' );
 

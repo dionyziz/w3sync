@@ -18,18 +18,7 @@
     $comment = $_POST[ 'comment' ];
     $revision =  $_POST[ 'revision' ];
 
-    switch ( $_POST[ 'do' ] ) {
-        case 'sync':
-            $syncid = Sync_Core( $revision, $_SERVER[ 'REMOTE_USER' ], $comment );
-            break;
-        case 'csssync':
-            $syncid = Sync_Static( $revision, $_SERVER[ 'REMOTE_USER' ], $comment );
-            break;
-        default:
-            ?><p>Invalid option.</p><?php
-            include 'footer.php';
-            return;
-    }
+    $syncid = Sync( $revision, $_SERVER[ 'REMOTE_USER' ], $comment );
 
     ob_clean();
     header( 'Location: info.php?syncid=' . $syncid );
