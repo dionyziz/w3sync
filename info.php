@@ -41,29 +41,6 @@
     }
     ?><a id="endofhistory"></a></div><div class="eof"></div>
     <script type="text/javascript">
-        function scrollToRevision() {
-            var history = document.getElementById( 'history' );
-            var divs = history.getElementsByTagName( 'div' );
-            var j = 0;
-
-            document.getElementById( 'endofhistory' ).scrollIntoView( true );
-
-            for ( i = 0; i < divs.length; ++i ) {
-                if ( divs[ i ].className == 'selected' ) {
-                    j = i;
-                    i -= 3;
-                    if ( i < 0 ) {
-                        i = 0;
-                    }
-                    divs[ i ].scrollIntoView();
-                    break;
-                }
-            }
-
-            divs[ j ].scrollIntoView();
-
-            document.getElementsByTagName( 'html' )[ 0 ].scrollIntoView( true );
-        }
     </script>
     
     <ul><li><strong>Author:</strong> <a href="mailto:<?php
@@ -78,7 +55,7 @@
     echo dateDiffText( $sync[ 'sync_created' ] );
     ?></li></ul>
         
-    <div class="diff"><?php
+    <div class="diff" id="diff"><?php
     $diff = $sync[ 'sync_diff' ];
     $diff = htmlspecialchars( $diff );
     $diff = str_replace( "\t", "    ", $diff );
@@ -103,7 +80,30 @@
     echo $diff;
     ?></div>
     <script type="text/javascript">
+        function scrollToRevision() {
+            var history = document.getElementById( 'history' );
+            var divs = history.getElementsByTagName( 'div' );
+            var j = 0;
+
+            document.getElementById( 'endofhistory' ).scrollIntoView( true );
+
+            for ( i = 0; i < divs.length; ++i ) {
+                if ( divs[ i ].className == 'selected' ) {
+                    j = i;
+                    i -= 3;
+                    if ( i < 0 ) {
+                        i = 0;
+                    }
+                    divs[ i ].scrollIntoView();
+                    break;
+                }
+            }
+
+            divs[ j ].scrollIntoView();
+        }
+        document.getElementById( 'diff' ).style.display = 'none';
         scrollToRevision();
+        document.getElementById( 'diff' ).style.display = '';
     </script><?php
 
     include 'footer.php';
