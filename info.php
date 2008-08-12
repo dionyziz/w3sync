@@ -41,6 +41,34 @@
     }
     ?><a id="endofhistory"></a></div><div class="eof"></div>
     
+    <script type="text/javascript">
+        function scrollToRevision() {
+            var history = document.getelementbyid( 'history' );
+            var divs = history.getelementsbytagname( 'div' );
+            var j = 0;
+
+            document.getelementbyid( 'endofhistory' ).scrollintoview( true );
+
+            for ( i = 0; i < divs.length; ++i ) {
+                if ( divs[ i ].classname == 'selected' ) {
+                    j = i;
+                    i -= 3;
+                    if ( i < 0 ) {
+                        i = 0;
+                    }
+                    divs[ i ].scrollintoview();
+                    break;
+                }
+            }
+
+            divs[ j ].scrollintoview();
+
+            document.getelementsbytagname( 'html' )[ 0 ].scrollintoview( true );
+        };
+
+        scrollToRevision();
+    </script>
+
     <ul><li><strong>Author:</strong> <a href="mailto:<?php
     echo htmlspecialchars( $sync[ 'user_name' ] );
     ?>@kamibu.com"><?php
@@ -78,27 +106,7 @@
     echo $diff;
     ?></div>
     <script type="text/javascript">
-        ( function () {
-            var history = document.getElementById( 'history' );
-            var divs = history.getElementsByTagName( 'div' );
-            var j = 0;
-
-            document.getElementById( 'endofhistory' ).scrollIntoView( true );
-
-            for ( i = 0; i < divs.length; ++i ) {
-                if ( divs[ i ].className == 'selected' ) {
-                    j = i;
-                    i -= 3;
-                    if ( i < 0 ) {
-                        i = 0;
-                    }
-                    divs[ i ].scrollIntoView();
-                    break;
-                }
-            }
-
-            divs[ j ].scrollIntoView();
-        } )();
+        scrollToRevision();
     </script><?php
 
     include 'footer.php';
