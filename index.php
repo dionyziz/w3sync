@@ -166,7 +166,7 @@
                 ?><form style="display:inline" action="unlock.php" method="post">
                     <input type="hidden" name="lockid" value="<?php
                     echo $lock[ 'lock_id' ];
-                    ?>" /><input type="submit" value="Delete" />
+                    ?>" /><input type="submit" value="Unlock" />
                 </form><?php
             }
             ?></td></tr><?php
