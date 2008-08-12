@@ -7,7 +7,18 @@
 
     if( empty( $_POST[ 'comment' ] ) ) {
         ?><p>A comment is required. No lock obtained.</p><?php
+        include 'footer.php';
         return;
+    }
+
+    $userid = User_ByName( $_SERVER[ 'REMOTE_USER' ] );
+    $locks = Lock_GetActive();
+    foreach ( $locks as $lock ) {
+        if ( $lock[ 'lock_userid' ] == $userid ) {
+            ?><p>You already have an active lock.</p><?php
+            include 'footer.php';
+            return;
+        }
     }
 
     Lock_Obtain( $_POST[ 'comment' ], $_SERVER[ 'REMOTE_USER' ] );

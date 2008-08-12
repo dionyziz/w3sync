@@ -10,6 +10,7 @@
             $usernames[ $lock[ 'user_name' ] ] = $i;
             ++$i;
         }
+        $lockusernames = $usernames;
         $usernames = array_flip( $usernames );
         foreach ( $usernames as $i => $username ) {
             $usernames[ $i ] = '<a href="mailto:' . htmlspecialchars( $username ) . '@kamibu.com">' . htmlspecialchars( $username ) . '</a>';
@@ -172,10 +173,12 @@
         }
         ?></tbody></table><?php
     }
-    ?>
-    <br /><br />
-    <form action="lock.php" method="post" onsubmit="return checkLockForm()">
-        Reason: <input name="comment" value="" id="lockcomment" /> <input type="submit" value="Sync Lock" />
-    </form><?php
+    if ( !isset( $lockusernames[ $_SERVER[ 'REMOTE_USER' ] ] ) ) { // don't allow them to add a second simultanious lock
+        ?>
+        <br /><br />
+        <form action="lock.php" method="post" onsubmit="return checkLockForm()">
+            Reason: <input name="comment" value="" id="lockcomment" /> <input type="submit" value="Sync Lock" />
+        </form><?php
+    }
     include 'footer.php';
 ?>
