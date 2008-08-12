@@ -10,7 +10,7 @@
     }
 
     ?><div class="history"><?php
-    $pivot = Log_GetPivot( $syncid );
+    $pivot = Log_GetPivot( $syncid, 5 );
     foreach ( $pivot as $item ) {
         ?><div<?php
         if ( $item[ 'sync_id' ] == $sync[ 'sync_id' ] ) {
