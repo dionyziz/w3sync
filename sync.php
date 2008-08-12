@@ -21,7 +21,7 @@
             $syncid = Sync_Core( $_POST[ 'revision' ], $_SERVER[ 'REMOTE_USER' ], $_POST[ 'comment' ] );
             break;
         case 'csssync':
-            $syncid = Sync_Static( 0, $_SERVER[ 'REMOTE_USER' ], $_POST[ 'comment' ] );
+            $syncid = Sync_Static( $_POST[ 'revision' ], $_SERVER[ 'REMOTE_USER' ], $_POST[ 'comment' ] );
             break;
         default:
             ?><p>Invalid option.</p><?php

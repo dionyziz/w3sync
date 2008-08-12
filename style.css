@@ -24,6 +24,7 @@ div.username {
     right: 10px;
     top: 10px;
     font-weight: bold;
+    font-size: 80%;
 }
 form {
     margin-top: 5px;
