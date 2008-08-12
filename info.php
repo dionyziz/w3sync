@@ -34,7 +34,7 @@
         }
         ?> to <?php
         echo $item[ 'sync_rev' ];
-        ?></a></div><?php
+        ?></a></div><a id="endofhistory"></a><?php
     }
     if ( $pivot[ count( $pivot ) - 1 ][ 'sync_id' ] != $latest[ 'sync_id' ] ) {
         ?><img src="images/bullet_go.png" alt="-&gt;" title="There were more recent syncs than this" /><?php
@@ -44,10 +44,13 @@
         ( function () {
             var history = document.getElementById( 'history' );
             var divs = history.getElementsByTagName( 'div' );
-            divs[ divs.length - 1 ].scrollIntoView();
+            var j = 0;
+
+            document.getElementById( 'endofhistory' ).scrollIntoView();
 
             for ( i = 0; i < divs.length; ++i ) {
                 if ( divs[ i ].className == 'selected' ) {
+                    j = i;
                     i -= 3;
                     if ( i < 0 ) {
                         i = 0;
@@ -56,6 +59,8 @@
                     return;
                 }
             }
+
+            divs[ j ].scrollIntoView();
         } )();
     </script><?php
 
