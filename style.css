@@ -44,14 +44,14 @@ div.history div {
     float: left;
     border: 1px solid #666;
     margin: 8px;
+    background-color: #fff;
+}
+div.history div:hover {
+    background-color: #eef;
 }
 div.history div a {
     padding: 5px;
     display: block;
-    background-color: #fff;
-}
-div.history div a:hover {
-    background-color: #9af;
 }
 div.history div.selected {
     border: 3px solid #666;
