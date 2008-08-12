@@ -40,35 +40,34 @@
         ?><img src="images/bullet_go.png" alt="-&gt;" title="There were more recent syncs than this" /><?php
     }
     ?><a id="endofhistory"></a></div><div class="eof"></div>
-    
     <script type="text/javascript">
         function scrollToRevision() {
-            var history = document.getelementbyid( 'history' );
-            var divs = history.getelementsbytagname( 'div' );
+            var history = document.getElementById( 'history' );
+            var divs = history.getElementsByTagName( 'div' );
             var j = 0;
 
-            document.getelementbyid( 'endofhistory' ).scrollintoview( true );
+            document.getElementById( 'endofhistory' ).scrollIntoView( true );
 
             for ( i = 0; i < divs.length; ++i ) {
-                if ( divs[ i ].classname == 'selected' ) {
+                if ( divs[ i ].className == 'selected' ) {
                     j = i;
                     i -= 3;
                     if ( i < 0 ) {
                         i = 0;
                     }
-                    divs[ i ].scrollintoview();
+                    divs[ i ].scrollIntoView();
                     break;
                 }
             }
 
-            divs[ j ].scrollintoview();
+            divs[ j ].scrollIntoView();
 
-            document.getelementsbytagname( 'html' )[ 0 ].scrollintoview( true );
-        };
+            document.getElementsByTagName( 'html' )[ 0 ].scrollIntoView( true );
+        }
 
         scrollToRevision();
     </script>
-
+    
     <ul><li><strong>Author:</strong> <a href="mailto:<?php
     echo htmlspecialchars( $sync[ 'user_name' ] );
     ?>@kamibu.com"><?php
