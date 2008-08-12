@@ -40,8 +40,8 @@
     function Sync_Static( $revision, $username, $comment ) {
         exec( "sudo -u syncer svn up /var/www/zino.gr/static/css --revision " . $revision, $output, $ret );
         exec( "sudo -u syncer svn up /var/www/zino.gr/static/js --revision " . $revision, $output, $ret );
-        exec( "sudo -u syncer " . SVN_ROOT . "etc/generate-static.php production /var/www/zino.gr/static/css > /var/www/zino.gr/static/css/global.css" );
-        exec( "sudo -u syncer " . SVN_ROOT . "etc/generate-static.php production /var/www/zino.gr/static/js|/srv/svn/jsmin > /var/www/zino.gr/static/js/global.js" );
+        exec( SVN_ROOT . "etc/generate-static.php production /var/www/zino.gr/static/css > /var/www/zino.gr/static/css/global.css" );
+        exec( SVN_ROOT . "etc/generate-static.php production /var/www/zino.gr/static/js|/srv/svn/jsmin > /var/www/zino.gr/static/js/global.js" );
 
         $data = implode( "\n", $output );
         $data .= "\nGenerated global.css and global.js revision " . $revision . ".\n";
