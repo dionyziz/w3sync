@@ -30,7 +30,12 @@
     </head>
     <body>
         <div class="content">
-            <div class="username"><?php
+            <div class="username">
+            <img src="http://www.kamibu.com/images/<?php
+            echo htmlspecialchars( $_SERVER[ 'REMOTE_USER' ] );
+            ?>" style="width:30px;height:30px" alt="" title="<?php
+            echo htmlspecialchars( $_SERVER[ 'REMOTE_USER' ] );
+            ?>" /> <?php
             echo htmlspecialchars( $_SERVER[ 'REMOTE_USER' ] );
             ?>@kamibu.com</div>
             <h1><a href="index.php">Deploy Zino</a></h1>
