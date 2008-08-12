@@ -1,7 +1,7 @@
 <?php
     function Lock_Obtain( $reason, $username ) {
         $reason = mysql_real_escape_string( $reason );
-        $userid = User_GetByName( $username );
+        $userid = User_ByName( $username );
         mysql_query(
             "INSERT INTO
                 `synclocks`
@@ -14,7 +14,7 @@
     }
 
     function Lock_Disable( $lockid, $username ) {
-        $userid = User_GetByName( $username );
+        $userid = User_ByName( $username );
         $lockid = ( int )$lockid;
 
         mysql_query(

@@ -1,7 +1,7 @@
 <?php
     function Log_Create( $username, $comment, $rev, $diff ) {
         Log_Mail( $username, $comment, $rev, $diff );
-        $userid = User_GetByName( $username );
+        $userid = User_ByName( $username );
         $comment = mysql_real_escape_string( $comment );
         $diff = mysql_real_escape_string( $diff );
         $sql = "INSERT INTO `sync`
