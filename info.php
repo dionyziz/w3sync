@@ -41,7 +41,7 @@
     }
     ?></div><div class="eof"></div>
     <script type="text/javascript">
-        function () {
+        ( function () {
             var history = document.getElementById( 'history' );
             var divs = history.getElementsByTagName( 'div' );
             divs[ divs.length - 1 ].scrollIntoView();
@@ -56,7 +56,7 @@
                     return;
                 }
             }
-        }();
+        } )();
     </script><?php
 
     ?><ul><li><strong>Author:</strong> <a href="mailto:<?php
