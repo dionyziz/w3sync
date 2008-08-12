@@ -15,13 +15,15 @@
         include 'footer.php';
         return;
     }
+    $comment = $_POST[ 'comment' ];
+    $revision =  $_POST[ 'revision' ];
 
     switch ( $_POST[ 'do' ] ) {
         case 'sync':
-            $syncid = Sync_Core( $_POST[ 'revision' ], $_SERVER[ 'REMOTE_USER' ], $_POST[ 'comment' ] );
+            $syncid = Sync_Core( $revision, $_SERVER[ 'REMOTE_USER' ], $comment );
             break;
         case 'csssync':
-            $syncid = Sync_Static( $_POST[ 'revision' ], $_SERVER[ 'REMOTE_USER' ], $_POST[ 'comment' ] );
+            $syncid = Sync_Static( $revision, $_SERVER[ 'REMOTE_USER' ], $comment );
             break;
         default:
             ?><p>Invalid option.</p><?php

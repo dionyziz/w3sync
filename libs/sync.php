@@ -28,7 +28,7 @@
 
         $data = implode( "\n", $output );
         $data .= "\nGenerated global.css and global.js revision " . $revision . ".\n";
-        $syncid = Log_Create( $username, $comment, $match[ 'rev' ], "csssync", $data );
+        $syncid = Log_Create( $username, $comment, $revision, "csssync", $data );
 
         return $syncid;
     }
