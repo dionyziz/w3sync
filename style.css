@@ -39,11 +39,11 @@ div.historycontainer {
     width: 100%;
 }
 div.history {
-    list-style: none;
     border: 1px solid #777;
     background-color: #eee;
     padding: 10px;
     height: 45px;
+    float: right;
 }
 div.history div {
     float: left;
