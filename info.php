@@ -40,9 +40,6 @@
         ?><img src="images/bullet_go.png" alt="-&gt;" title="There were more recent syncs than this" /><?php
     }
     ?><a id="endofhistory"></a></div><div class="eof"></div>
-    <script type="text/javascript">
-    </script>
-    
     <ul><li><strong>Author:</strong> <a href="mailto:<?php
     echo htmlspecialchars( $sync[ 'user_name' ] );
     ?>@kamibu.com"><?php
@@ -55,7 +52,7 @@
     echo dateDiffText( $sync[ 'sync_created' ] );
     ?></li></ul>
         
-    <div class="diff" id="diff"><?php
+    <div class="diff" id="diff" style="display:none"><?php
     $diff = $sync[ 'sync_diff' ];
     $diff = htmlspecialchars( $diff );
     $diff = str_replace( "\t", "    ", $diff );
@@ -100,8 +97,9 @@
             }
 
             divs[ j ].scrollIntoView();
+
+            document.getElementsByTagName( 'html' )[ 0 ].scrollIntoView( true );
         }
-        document.getElementById( 'diff' ).style.display = 'none';
         scrollToRevision();
         document.getElementById( 'diff' ).style.display = '';
     </script><?php
