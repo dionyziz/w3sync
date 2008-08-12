@@ -49,8 +49,7 @@
             <input type="submit" value="Deploy to Production" />
     </td></tr><?php
     $i = 1;
-    $latestrevision = Log_GetLatestByType( 'sync' );
-    $latestrevision = $latestrevision[ 'sync_rev' ];
+    $latestrevision = $lastSyncs[ 0 ][ 'sync_rev' ];
     foreach ( $lastSyncs as $sync ) {
         ?><tr<?php
         if ( $i % 2 == 0 ) {
