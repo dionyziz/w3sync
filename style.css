@@ -34,20 +34,17 @@ ul {
     margin: 10px 0 10px 0;
     padding: 0;
 }
-div.historycontainer {
-    overflow: auto;
-    width: 100%;
-    text-align: right;
-}
 div.history {
     border: 1px solid #777;
     background-color: #eee;
     padding: 10px;
     height: 40px;
+    white-space: nowrap;
 }
 div.history div {
-    float: left;
     border: 1px solid #666;
+    display: -moz-inline-box;
+    display: inline-block;
     margin: 8px;
     background-color: #fff;
 }
@@ -59,8 +56,8 @@ div.history div a {
     display: block;
 }
 div.history img {
-    float: left;
     padding: 14px 0 14px;
+    display: inline-block;
 }
 div.history div.selected {
     -moz-border-radius: 100%;
