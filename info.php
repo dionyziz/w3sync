@@ -60,6 +60,7 @@
                 }
             }
 
+            alert( j );
             divs[ j ].scrollIntoView();
         } )();
     </script><?php
