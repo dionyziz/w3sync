@@ -162,7 +162,7 @@
             }
             return true;
         }
-        var myImage = New Image( 50, 50 );
+        var myImage = new Image();
         myImage.src = 'images/ajax-loader.gif'; // preload
     </script>
 
