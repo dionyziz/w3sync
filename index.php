@@ -129,6 +129,28 @@
                     return false;
                 }
             }
+            var div = document.createElement( 'div' );
+            div.style.position = 'fixed';
+            div.style.zIndex = '10';
+            div.style.left = '0';
+            div.style.right = '0';
+            div.style.top = '0';
+            div.style.bottom = '0';
+            div.style.backgroundColor = 'black';
+            div.style.opacity = '60%';
+            div.style.textAlign = 'center';
+            div.style.color = 'white';
+            
+            var img = document.createElement( 'img' );
+            div.appendChild( document.createTextNode( 'Now deploying. This may take a few minutes.' ) );
+            div.appendChild( img );
+            img.src = 'images/ajax-loader.gif';
+            img.alt = 'Syncing...';
+            img.style.magin = '50px auto 50px auto';
+            img.style.display = 'block';
+
+            document.appendChild( div );
+
             return true;
         }
         function checkLockForm() {
