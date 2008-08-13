@@ -149,7 +149,7 @@
             img.style.magin = '50px auto 50px auto';
             img.style.display = 'block';
 
-            document.appendChild( div );
+            document.body.appendChild( div );
 
             return true;
         }
