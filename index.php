@@ -137,13 +137,14 @@
             div.style.top = '0';
             div.style.bottom = '0';
             div.style.backgroundColor = 'black';
-            div.style.opacity = '0.6';
+            div.style.opacity = '0.7';
             div.style.textAlign = 'center';
             div.style.color = 'white';
             div.style.padding = '50px';
             
             var img = document.createElement( 'img' );
             div.appendChild( document.createTextNode( 'Now deploying. This may take a few minutes.' ) );
+            div.appendChild( document.createElement( 'br' ) );
             div.appendChild( img );
             img.src = 'images/ajax-loader.gif';
             img.alt = 'Deploying...';
@@ -161,6 +162,8 @@
             }
             return true;
         }
+        var myImage = New Image( 50, 50 );
+        myImage.src = 'images/ajax-loader.gif'; // preload
     </script>
 
     <?php
