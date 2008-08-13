@@ -129,28 +129,7 @@
                     return false;
                 }
             }
-            var div = document.createElement( 'div' );
-            div.style.position = 'fixed';
-            div.style.zIndex = '10';
-            div.style.left = '0';
-            div.style.right = '0';
-            div.style.top = '0';
-            div.style.bottom = '0';
-            div.style.backgroundColor = 'black';
-            div.style.opacity = '0.7';
-            div.style.textAlign = 'center';
-            div.style.color = 'white';
-            div.style.padding = '50px';
-            
-            var img = document.createElement( 'img' );
-            div.appendChild( document.createTextNode( 'Now deploying. This may take a few minutes.' ) );
-            div.appendChild( document.createElement( 'br' ) );
-            div.appendChild( img );
-            img.src = 'images/ajax-loader.gif';
-            img.alt = 'Deploying...';
-            img.style.padding = '50px';
-
-            document.body.appendChild( div );
+            document.getElementById( 'wait' ).style.display = '';
 
             return true;
         }
@@ -162,8 +141,6 @@
             }
             return true;
         }
-        var myImage = new Image();
-        myImage.src = 'images/ajax-loader.gif'; // preload
     </script>
 
     <?php
@@ -209,5 +186,10 @@
             Reason: <input name="comment" value="" id="lockcomment" /> <input type="submit" value="Sync Lock" />
         </form><?php
     }
+    ?><div id="wait" style="display:none">
+        <strong>Now deploying...</strong><br /><br />
+        This may take several moments.<br />
+        <img src="images/ajax-loader.gif" />
+    </div><?php
     include 'footer.php';
 ?>
