@@ -137,17 +137,17 @@
             div.style.top = '0';
             div.style.bottom = '0';
             div.style.backgroundColor = 'black';
-            div.style.opacity = '60%';
+            div.style.opacity = '0.6';
             div.style.textAlign = 'center';
             div.style.color = 'white';
+            div.style.padding = '50px';
             
             var img = document.createElement( 'img' );
             div.appendChild( document.createTextNode( 'Now deploying. This may take a few minutes.' ) );
             div.appendChild( img );
             img.src = 'images/ajax-loader.gif';
-            img.alt = 'Syncing...';
-            img.style.magin = '50px auto 50px auto';
-            img.style.display = 'block';
+            img.alt = 'Deploying...';
+            img.style.padding = '50px';
 
             document.body.appendChild( div );
 
