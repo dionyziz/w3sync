@@ -35,10 +35,7 @@
     <table><thead><tr><td>Revision</td><td>Developer</td><td>Reason</td><td>When</td><td>&nbsp;</td></tr></thead><tbody><?php
     if ( !count( $locks ) ) {
         ?><tr><td>
-                <input type="text" value="<?php
-                $revision = SVN_GetCurrentRevision();
-                echo $revision;
-                ?>" name="revision" id="revision" /><br />
+                <input type="text" value="latest" name="revision" id="revision" /><br />
             </td><td><?php
                 echo htmlspecialchars( $_SERVER[ 'REMOTE_USER' ] );
             ?></td><td>

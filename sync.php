@@ -24,6 +24,9 @@
 
     $comment = $_POST[ 'comment' ];
     $revision =  $_POST[ 'revision' ];
+    if ( $revision == 'latest' ) {
+        $revision = SVN_GetCurrentRevision();
+    }
 
     $syncid = Sync( $revision, $_SERVER[ 'REMOTE_USER' ], $comment );
 
