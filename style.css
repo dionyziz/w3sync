@@ -1,173 +1,173 @@
 html, body {
-	width: 100%;
-	margin: 0;
-	padding: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 body {
-	font-family: Verdana, "Trebuchet MS", Helvetica;
-	width: 99%;
-	margin: 0;
-	font-size: 90%;
+    font-family: Verdana, "Trebuchet MS", Helvetica;
+    width: 99%;
+    margin: 0;
+    font-size: 90%;
 }
 a, a:visited, a:active {
-	text-decoration: none;
-	color: #105cb6;
+    text-decoration: none;
+    color: #105cb6;
 }
 a:hover {
-	color: #000033;
+    color: #000033;
 }
 div.content {
-	margin: 15px;
+    margin: 15px;
 }
 div.username {
-	position: absolute;
-	right: 20px;
-	top: 10px;
-	font-weight: bold;
-	font-size: 80%;
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    font-weight: bold;
+    font-size: 80%;
 }
 form {
-	margin-top: 5px;
+    margin-top: 5px;
 }
 ul {
-	list-style: none;
-	margin: 10px 0 10px 0;
-	padding: 0;
+    list-style: none;
+    margin: 10px 0 10px 0;
+    padding: 0;
 }
 div.history {
-	border: 1px solid #777;
-	background-color: #eee;
-	padding: 10px;
-	height: 55px;
-	width: 100%;
-	overflow: auto;
-	vertical-align: top;
-	white-space: nowrap;
+    border: 1px solid #777;
+    background-color: #eee;
+    padding: 10px;
+    height: 55px;
+    width: 100%;
+    overflow: auto;
+    vertical-align: top;
+    white-space: nowrap;
 }
 div.history div {
-	border: 1px solid #666;
-	display: -moz-inline-box;
-	display: inline-block;
-	margin: 8px;
-	vertical-align: top;
-	background-color: #fff;
+    border: 1px solid #666;
+    display: -moz-inline-box;
+    display: inline-block;
+    margin: 8px;
+    vertical-align: top;
+    background-color: #fff;
 }
 a#endofhistory {
-	display: -moz-inline-box;
-	display: inline-block;
-	width: 1px;
-	height: 1px;
+    display: -moz-inline-box;
+    display: inline-block;
+    width: 1px;
+    height: 1px;
 }
 div.history div:hover {
-	background-color: #eef;
+    background-color: #eef;
 }
 div.history div a {
-	padding: 5px;
-	display: block;
+    padding: 5px;
+    display: block;
 }
 div.history img {
-	padding: 14px 0 14px;
-	display: -moz-inline-box;
-	display: inline-block;
+    padding: 14px 0 14px;
+    display: -moz-inline-box;
+    display: inline-block;
 }
 div.history div.selected {
-	-moz-border-radius: 100%;
-	background-color: #999;
-	color: white;
+    -moz-border-radius: 100%;
+    background-color: #999;
+    color: white;
 }
 div.history div.selected a, div.history div.selected a:hover {
-	color: white;
+    color: white;
 }
 div.eof {
-	clear: both;
+    clear: both;
 }
 table {
-	width: 100%;
-	border: 1px solid #333;
-	border-collapse: collapse;
+    width: 100%;
+    border: 1px solid #333;
+    border-collapse: collapse;
 }
 table tr.l {
-	background-color: #eee;
+    background-color: #eee;
 }
 input#comment {
-	width: 200px;
+    width: 200px;
 }
 input#lockcomment {
-	width: 200px;
+    width: 200px;
 }
 textarea {
-	margin: 5px;
-	width: 100%;
-	height: 50px;
+    margin: 5px;
+    width: 100%;
+    height: 50px;
 }
 a.rollback {
-	font-size: 75%;
+    font-size: 75%;
 }
 table thead tr td {
-	font-weight: bold;
-	font-size: 80%;
+    font-weight: bold;
+    font-size: 80%;
 }
 table thead tr {
-	background-color: #eee;
+    background-color: #eee;
 }
 table td {
-	padding: 5px;
+    padding: 5px;
 }
 table tbody tr {
-	border-top: 1px solid #ccc;
+    border-top: 1px solid #ccc;
 }
 h1 {
-	font-size: 150%;
-	font-weight: normal;
-	text-align: left;
-	color: #666;
+    font-size: 150%;
+    font-weight: normal;
+    text-align: left;
+    color: #666;
 }
 h2 {
-	font-size: 130%;
-	color: #666;
-	font-weight: normal;
-	text-align: left;
+    font-size: 130%;
+    color: #666;
+    font-weight: normal;
+    text-align: left;
 }
 h3 {
-	font-size: 105%;
-	color: #666;
-	text-align: left;
+    font-size: 105%;
+    color: #666;
+    text-align: left;
 }
 div.diff {
-	width: 100%;
-	border: 1px solid #ccc;
-	padding: 5px;
-	overflow: auto;
-	max-height: 800px;
+    width: 100%;
+    border: 1px solid #ccc;
+    padding: 5px;
+    overflow: auto;
+    max-height: 800px;
 }
 span.added {
-	color: #4070aa;
+    color: #4070aa;
 }
 span.removed {
-	color: #aa5555;
+    color: #aa5555;
 }
 span.file {
-	font-weight: bold;
+    font-weight: bold;
 }
 div.copy {
-	color: #aaa;
-	font-size: 75%;
-	margin: 20px 0 10px 0;
+    color: #aaa;
+    font-size: 75%;
+    margin: 20px 0 10px 0;
 }
 div#wait {
-	position: fixed;
-	z-index: 10;
-	left: 0;
-	right: 0;
-	top: 0;
-	bottom: 0;
-	background-color: black;
-	opacity: 0.8;
-	text-align: center;
-	color: white;
-	padding: 50px;
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: black;
+    opacity: 0.8;
+    text-align: center;
+    color: white;
+    padding: 50px;
 }
 div#wait img {
-	padding: 50px;
+    padding: 50px;
 }
 

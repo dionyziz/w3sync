@@ -1,25 +1,25 @@
 <?php
-	define( 'SVN_ROOT', '/var/www/zino.gr/beta/phoenix/' );
+    define( 'SVN_ROOT', '/var/www/zino.gr/beta/phoenix/' );
 
-	function SVN_GetCurrentRevision() {
-		// get current rev. this will be the rev of the new synced version
-		exec( "sudo -u syncer svn info " . SVN_ROOT . "|grep Revision", $output, $ret );
-		$revstring = implode( "\n", $output );
-		preg_match( "/Revision: (?<rev>\w+)/", $revstring, $match );
-		$revision = $match[ 'rev' ];
+    function SVN_GetCurrentRevision() {
+        // get current rev. this will be the rev of the new synced version
+        exec( "sudo -u syncer svn info " . SVN_ROOT . "|grep Revision", $output, $ret );
+        $revstring = implode( "\n", $output );
+        preg_match( "/Revision: (?<rev>\w+)/", $revstring, $match );
+        $revision = $match[ 'rev' ];
 
-		return $revision;
-	}
+        return $revision;
+    }
 
-	function SVN_Diff( $oldrevision, $newrevision ) {
-		$oldrevision = ( int )$oldrevision;
-		$newrevision = ( int )$newrevision;
+    function SVN_Diff( $oldrevision, $newrevision ) {
+        $oldrevision = ( int )$oldrevision;
+        $newrevision = ( int )$newrevision;
 
-		assert( $oldrevision > 0 );
-		assert( $newrevision > 0 );
+        assert( $oldrevision > 0 );
+        assert( $newrevision > 0 );
 
-		exec( 'sudo -u syncer svn diff -r ' . $oldrevision . ':' . $newrevision . ' ' . escapeshellarg( SVN_ROOT ), $output, $ret );
+        exec( 'sudo -u syncer svn diff -r ' . $oldrevision . ':' . $newrevision . ' ' . escapeshellarg( SVN_ROOT ), $output, $ret );
 
-		return implode( "\n", $output );
-	}
+        return implode( "\n", $output );
+    }
 ?>
