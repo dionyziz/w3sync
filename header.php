@@ -10,7 +10,7 @@
     $xmlmimetype = 'application/xhtml+xml';
     $accepted = explode( ',' , $_server[ 'http_accept' ] );
     if ( in_array( $xmlmimetype , $accepted ) ) {
-        header( "content-type: application/xhtml+xml; charset=utf-8" );
+        header( "content-type: $xmlmimetype; charset=utf-8" );
         echo '<?xml version="1.0" encoding="utf-8"?>';
     }
     else {
