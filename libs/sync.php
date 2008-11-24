@@ -15,7 +15,7 @@
     }
 
     function Sync_Core( $revision, $username, $comment ) {
-        exec( "wget -O - http://zeus.blogcube.net/sync/beta.php?revision=" . $revision, $output, $ret );
+        exec( "wget -O - http://zeus.blogcube.net:8080/sync/beta.php?revision=" . $revision, $output, $ret );
         $data = implode( "\n", $output );
 
         $latestsync = Log_GetLatest( 1 );
