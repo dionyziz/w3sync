@@ -4,10 +4,14 @@
 
         // the order is significant; static must be synced before the core so that the changes in css/js are propagated
         // before the version invalidation kick in
+        $t = microtime( true );
         $static = Sync_Static( $revision, $username, $comment );
+        $statictook = round( microtime( true ) - $t, 2 );
+        $t = microtime( true );
         $core = Sync_Core( $revision, $username, $comment );
+        $coretook = round( microtime( true ) - $t, 2 );
 
-        $data = "Syncing core...\n" . $core . "\n\nSyncing static...\n" . $static;
+        $data = "Syncing core...\n" . $core . "\nCore syncing took $coretook seconds.\n\nSyncing static...\n" . $static . "\nStatic syncing took $statictook seconds.\n";
 
         $syncid = Log_Create( $username, $comment, $revision, $data );
 
