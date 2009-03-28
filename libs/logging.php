@@ -42,8 +42,8 @@
             $ret[ $row[ 'sync_id' ] ] = $row;
         }
         ksort( $ret ); // in ascending chronological order
-        for ( $i = 0; $i < count( $ret ) - 1; ++$i ) {
-            if ( $ret[ $i ][ 'sync_rev' ] < $ret[ $i + 1 ][ 'sync_rev' ] ) {
+        for ( $i = 1; $i < count( $ret ); ++$i ) {
+            if ( $ret[ $i ][ 'sync_rev' ] < $ret[ $i - 1 ][ 'sync_rev' ] ) {
                 $ret[ $i ][ 'rollback' ] = true;
             }
         }
