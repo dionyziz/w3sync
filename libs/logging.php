@@ -29,7 +29,8 @@
         $limit = ( int )$limit;
         $limit += 2; // get two more (one on each side of the pivot) to determine if the last sync in $limit is a rollack by comparing their revision numbers
         $sql = "SELECT
-                    `sync`.*, `users`.*
+                    `sync_id`, `sync_rev`, `sync_comment`,
+                    `user_name`
                 FROM
                     `sync` LEFT JOIN `users`
                         ON `sync_userid` = `user_id`
@@ -42,14 +43,14 @@
             $ret[ $row[ 'sync_id' ] ] = $row;
         }
         ksort( $ret ); // in ascending chronological order
-        for ( $i = 1; $i < count( $ret ); ++$i ) {
-            if ( $ret[ $i ][ 'sync_rev' ] < $ret[ $i - 1 ][ 'sync_rev' ] ) {
+        foreach ( $ret as $i => $row ) {
+            if ( $row[ 'sync_rev' ] < $row[ 'sync_rev' ] ) {
                 $ret[ $i ][ 'rollback' ] = true;
             }
         }
         $limit -= 2;
         if ( count( $ret ) > $limit ) {
-            array_pop( $ret ); // remove the extra items we don't need
+            array_shift( $ret ); // remove the extra items we don't need
         }
         $ret = array_values( $ret );
         return $ret;
@@ -64,7 +65,8 @@
             $order = 'DESC';
         }
         $sql = "SELECT
-                    `sync`.*, `users`.*
+                    `sync_id`, `sync_rev`, `sync_comment`, `sync_created`
+                    `user_name`
                 FROM
                     `sync` LEFT JOIN `users`
                         ON `sync_userid` = `user_id`

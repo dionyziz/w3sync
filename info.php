@@ -16,7 +16,6 @@
     $latest = $latest[ 0 ];
     $oldest = $oldest[ 0 ];
     $pivot = Log_GetPivot( $syncid, 25 );
-    die( var_dump( $pivot ) );
     ?><div id="history" class="history"><?php
     if ( $pivot[ 0 ][ 'sync_id' ] != $oldest[ 'sync_id' ] ) {
         ?><img src="images/bullet_go.png" alt="-&gt;" title="There were older syncs than this" /><?php
