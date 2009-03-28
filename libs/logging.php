@@ -69,7 +69,7 @@
             $order = 'DESC';
         }
         $sql = "SELECT
-                    `sync_id`, `sync_rev`, `sync_comment`, `sync_created`
+                    `sync_id`, `sync_rev`, `sync_comment`, `sync_created`,
                     `user_name`
                 FROM
                     `sync` LEFT JOIN `users`
