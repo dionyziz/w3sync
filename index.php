@@ -46,7 +46,7 @@
     }
     $i = 1;
     $latestrevision = $lastSyncs[ 0 ][ 'sync_rev' ];
-    foreach ( $lastSyncs as $sync ) {
+    foreach ( $lastSyncs as $i => $sync ) {
         ?><tr<?php
         if ( $i % 2 == 0 ) {
             ?> class="l"<?php
@@ -56,7 +56,7 @@
         ?>"><?php
         echo $sync[ 'sync_rev' ];
         ?></a><?php
-        if ( $sync[ 'rollback' ] ) {
+        if ( isset( $sync[ 'rollback' ] ) ) {
             ?> <img src="images/arrow_undo.png" alt="Rollback to " title="Rolled back to revision <?php
             echo $sync[ 'sync_rev' ];
             ?>" /><?php
@@ -122,7 +122,7 @@
             if ( document.getElementById( 'revision' ).value < <?php
             echo $latestrevision;
             ?> - 100 ) {
-                if ( !confirm( "You are about to sync to revision " + document.getElementById( 'revision' ).value + ". This is a substancially old revision!\nAre you sure you want to sync?" ) ) {
+                if ( !confirm( "You are about to sync to revision " + document.getElementById( 'revision' ).value + ". This is a substantially old revision!\nAre you sure you want to sync?" ) ) {
                     return false;
                 }
             }

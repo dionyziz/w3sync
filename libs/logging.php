@@ -26,19 +26,13 @@
     }
 
     function Log_GetPivot( $syncid, $limit = 10 ) {
+        $limit = ( int )$limit;
+        $limit += 2; // get two more (one on each side of the pivot) to determine if the last sync in $limit is a rollack by comparing their revision numbers
         $sql = "SELECT
-                    `sync`.*, previoussync.`sync_rev`>`sync`.sync_rev AS rollback, `users`.*
+                    `sync`.*, `users`.*
                 FROM
                     `sync` LEFT JOIN `users`
                         ON `sync_userid` = `user_id`
-                    LEFT JOIN `sync` AS previoussync
-                        ON `sync`.`sync_id`>previoussync.`sync_id`
-                    LEFT JOIN `sync` AS maxfilter
-                        ON previoussync.`sync_id`<maxfilter.`sync_id` AND maxfilter.`sync_id`<`sync`.`sync_id`
-                WHERE
-                    maxfilter.`sync_id` IS NULL
-                GROUP BY
-                    `sync`.`sync_id`
                 ORDER BY 
                     ABS( " . $syncid . " - `sync`.`sync_id` ) ASC
                 LIMIT " . $limit;
@@ -48,31 +42,30 @@
             $ret[ $row[ 'sync_id' ] ] = $row;
         }
         ksort( $ret ); // in ascending chronological order
+        for ( $i = 0; $i < count( $ret ) - 1; ++$i ) {
+            if ( $ret[ $i ][ 'sync_rev' ] < $ret[ $i + 1 ][ 'sync_rev' ] ) {
+                $ret[ $i ][ 'rollback' ] = true;
+            }
+        }
+        if ( count( $ret ) > $limit ) {
+            array_pop( $ret );
+            // remove the extra items we don't need
+        }
         $ret = array_values( $ret );
         return $ret;
     }
 
     function Log_GetLatest( $limit = 20, $order = 'DESC' ) {
         $limit = ( int )$limit;
-        // the two left joins with itself are for retrieving the boolean "rollback" value which determines
-        // whether the sync is a rollback -- essentially we're looking for the exact previous sync_id
-        // for each row and compare its sync_rev value with the current row's sync_rev value.
+        ++$limit; // get one more to determine if the last sync in $limit is a rollack by comparing their revision numbers
         if ( $order != 'ASC' && $order != 'DESC' ) {
             $order = 'DESC';
         }
         $sql = "SELECT
-                    `sync`.*, previoussync.`sync_rev`>`sync`.sync_rev AS rollback, `users`.*
+                    `sync`.*, `users`.*
                 FROM
                     `sync` LEFT JOIN `users`
                         ON `sync_userid` = `user_id`
-                    LEFT JOIN `sync` AS previoussync
-                        ON `sync`.`sync_id`>previoussync.`sync_id`
-                    LEFT JOIN `sync` AS maxfilter
-                        ON previoussync.`sync_id`<maxfilter.`sync_id` AND maxfilter.`sync_id`<`sync`.`sync_id`
-                WHERE
-                    maxfilter.`sync_id` IS NULL
-                GROUP BY
-                    `sync`.`sync_id`
                 ORDER BY 
                     `sync_id` " . $order . "
                 LIMIT " . $limit;
@@ -80,6 +73,14 @@
         $return = array();
         while( $row = mysql_fetch_array( $res ) ) {
             $return[] = $row;
+        }
+        for ( $i = 0; $i < count( $return ) - 1; ++$i ) {
+            if ( $return[ $i ][ 'sync_rev' ] < $return[ $i + 1 ][ 'sync_rev' ] ) {
+                $return[ $i ][ 'rollback' ] = true;
+            }
+        }
+        if ( count( $return ) > $limit ) {
+            array_pop( $return ); // remove the extra item we don't need
         }
         return $return;
     }
