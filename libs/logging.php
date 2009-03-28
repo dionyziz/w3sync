@@ -43,10 +43,14 @@
             $ret[ $row[ 'sync_id' ] ] = $row;
         }
         ksort( $ret ); // in ascending chronological order
+        $j = 0;
         foreach ( $ret as $i => $row ) {
-            if ( $row[ 'sync_rev' ] < $row[ 'sync_rev' ] ) {
-                $ret[ $i ][ 'rollback' ] = true;
+            if ( $j ) {
+                if ( $row[ 'sync_rev' ] < $ret[ $j ][ 'sync_rev' ] ) {
+                    $ret[ $i ][ 'rollback' ] = true;
+                }
             }
+            $j = $i;
         }
         $limit -= 2;
         if ( count( $ret ) > $limit ) {
