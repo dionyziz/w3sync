@@ -58,7 +58,9 @@
 
     function Log_GetLatest( $limit = 20, $order = 'DESC' ) {
         $limit = ( int )$limit;
-        ++$limit; // get one more to determine if the last sync in $limit is a rollack by comparing their revision numbers
+        if ( $order == 'DESC' ) {
+            ++$limit; // get one more to determine if the last sync in $limit is a rollack by comparing their revision numbers
+        }
         if ( $order != 'ASC' && $order != 'DESC' ) {
             $order = 'DESC';
         }
