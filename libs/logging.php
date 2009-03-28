@@ -47,6 +47,7 @@
                 $ret[ $i ][ 'rollback' ] = true;
             }
         }
+        --$limit;
         if ( count( $ret ) > $limit ) {
             array_pop( $ret );
             // remove the extra items we don't need
@@ -79,8 +80,11 @@
                 $return[ $i ][ 'rollback' ] = true;
             }
         }
+        --$limit;
         if ( count( $return ) > $limit ) {
-            array_pop( $return ); // remove the extra item we don't need
+            if ( $order == 'DESC' ) {
+                array_pop( $return ); // remove the extra item we don't need
+            }
         }
         return $return;
     }
