@@ -30,7 +30,7 @@
         echo $item[ 'sync_id' ];
         ?>"><?php
         echo htmlspecialchars( $item[ 'user_name' ] );
-        if ( $item[ 'rollback' ] ) {
+        if ( isset( $item[ 'rollback' ] ) ) {
             ?> back<?php
         }
         ?> to <?php

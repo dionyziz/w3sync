@@ -47,10 +47,9 @@
                 $ret[ $i ][ 'rollback' ] = true;
             }
         }
-        --$limit;
+        $limit -= 2;
         if ( count( $ret ) > $limit ) {
-            array_pop( $ret );
-            // remove the extra items we don't need
+            array_pop( $ret ); // remove the extra items we don't need
         }
         $ret = array_values( $ret );
         return $ret;
