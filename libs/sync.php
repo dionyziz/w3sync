@@ -19,8 +19,8 @@
     }
 
     function Sync_Core( $revision, $username, $comment ) {
-        exec( "wget -O - http://deploy.zino.gr/sync.php?revision=" . $revision, $output, $ret );
-        $data = implode( "\n", $output );
+        // exec( "wget -O - http://deploy.zino.gr/sync.php?revision=" . $revision, $output, $ret );
+        // $data = implode( "\n", $output );
 		exec( "wget -O - http://deploy2.zino.gr/sync.php?revision=" . $revision, $output, $ret );
         $data .= implode( "\n", $output );
 
