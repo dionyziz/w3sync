@@ -19,8 +19,6 @@
     }
 
     function Sync_Core( $revision, $username, $comment ) {
-        // exec( "wget -O - http://deploy.zino.gr/sync.php?revision=" . $revision, $output, $ret );
-        // $data = implode( "\n", $output );
 		exec( "wget -O - http://deploy2.zino.gr/sync.php?revision=" . $revision, $output, $ret );
         $data .= implode( "\n", $output );
 
@@ -44,11 +42,6 @@
     }
     
     function Sync_Static( $revision, $username, $comment ) {
-        /*exec( "sudo -u syncer svn up /var/www/zino.gr/static/css --revision " . $revision, $output, $ret );
-        exec( "sudo -u syncer svn up /var/www/zino.gr/static/js --revision " . $revision, $output, $ret );
-        exec( SVN_ROOT . "etc/generate-static.php production /var/www/zino.gr/static/css|/srv/svn/cssmin > /var/www/zino.gr/static/css/global.css" );
-        exec( SVN_ROOT . "etc/generate-static.php production /var/www/zino.gr/static/js|/srv/svn/jsmin > /var/www/zino.gr/static/js/global.js" );*/
-		
 		exec( "wget -O - http://gaia.kamibu.com/sync/syncstatic.php?revision=" . $revision, $output, $ret );
 
         $data = implode( "\n", $output );
