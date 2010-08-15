@@ -19,7 +19,7 @@
     }
 
     function Sync_Core( $revision, $username, $comment ) {
-		exec( "wget -O - http://deploy2.zino.gr/sync.php?revision=" . $revision, $output, $ret );
+		exec( "wget -O - http://deploy2.zino.gr:500/sync.php?revision=" . $revision, $output, $ret );
         $data .= implode( "\n", $output );
 
         $latestsync = Log_GetLatest( 1 );

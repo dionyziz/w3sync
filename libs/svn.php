@@ -1,5 +1,5 @@
 <?php
-    define( 'SVN_ROOT', '/var/www/zino.gr/beta/phoenix/' );
+    define( 'SVN_ROOT', 'file:///srv/svn/repos/kamibu/excalibur/revolution' );
 
     function SVN_GetCurrentRevision() {
         // get current rev. this will be the rev of the new synced version
