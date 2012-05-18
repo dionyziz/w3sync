@@ -1,0 +1,53 @@
+#!/usr/bin/php
+<?php
+    if ( count( $argv ) != 2 ) {
+        echo "Usage: sync <revision>\n";
+        return;
+    }
+
+    $t = microtime( true );
+
+    $revision = ( int )$argv[ 1 ];
+    system( 'echo "This is ' . $argv[ 0 ] . ' on "$HOSTNAME" by dionyziz <dionyziz@kamibu.com>"' );
+    echo "Updating to revision " . $revision . "...\n";
+    system( 'svn up /var/www/zino.gr/htr --revision ' . $revision );
+    echo "Cloning...\n";
+    $newroot = '/var/www/zino.gr/htr' . $revision;
+    if ( file_exists( $newroot ) ) {
+        echo "Target revision already exists. Only switching.\n";
+    }
+    else {
+        system( 'svn export /var/www/zino.gr/htr ' . $newroot );
+        // post-processing scripts such as dewaterize should go here
+        echo "Post-processing production code...\n";
+        $tp = microtime( true );
+        // system( '/var/www/zino.gr/htr' . $revision . '/etc/dewaterize.php /var/www/zino.gr/htr' . $revision );
+        // system( 'g++ /var/www/zino.gr/htr' . $revision . '/bin/sanitizer/sanitizer.cpp -ltidy -I/usr/include/tidy -o /var/www/zino.gr/htr' . $revision . '/bin/sanitizer/sanitize' );
+        // system( '/var/www/zino.gr/htr' . $revision . '/etc/rewritesb2l.php /var/www/zino.gr/htr' . $revision . '/.htaccess >/etc/apache2/zinorewrites' );
+        // system( '/etc/init.d/apache2 reload');
+        $static = $newroot . '/nginx-static/static';
+        system( "mkdir -p $static" );
+        $files = file( $newroot . '/xslt/global.lst', FILE_IGNORE_NEW_LINES );
+        ob_start();
+        foreach ( $files as $file ) {
+            $realfile = $newroot . '/xslt/' . $file;
+            if ( empty( $file ) || substr( $file, 0, 1 ) == '#' || !file_exists( $realfile ) ) {
+                continue;
+            }
+            echo file_get_contents( $realfile ) . "\n";
+        }
+        file_put_contents( $static . "/global.xsl", ob_get_clean() );
+        $oldstatic = opendir( $newroot . '/static' );
+        while ( false !== ( $file = readdir( $oldstatic ) ) ) {
+            if ( $file != '.' && $file != '..' ) {
+                copy( $newroot . '/static/' . $file, $static . '/' . $file );
+            }
+        }
+        echo "Post-processing took " . round( microtime( true ) - $tp, 2 ) . " seconds.\n";
+    }
+    echo "Atomically switching production to revision " . $revision . "...\n";
+    system( 'ln -Tfs ' . $newroot . ' /var/www/zino.gr/revo' );
+    echo "Production is now running revision " . $revision . "!\n";
+
+    echo "Export and post-processing took " . round( microtime( true ) - $t, 2 ) . " seconds.\n";
+?>
