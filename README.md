@@ -1,4 +1,4 @@
-*****w3sync***** is a simple tool for web application deployment. It is intended
+***w3sync*** is a simple tool for web application deployment. It is intended
 to be used by medium and big-sized projects to manage deployment of code from
 develompent to testing and from testing to production.
 
@@ -54,6 +54,7 @@ process. It will help you do the following:
  * One-click rollbacks
  * Deployment messages
  * Deployment history UI including diffs
+ * Deployment locking
 
 Because deployment for every project is different, it is impossible to write one
 tool to do the deployment for you. For example, a particular application may be
@@ -90,7 +91,8 @@ License
 =======
 w3sync is licensed under the **MIT License**:
 
-Copyright (C) 2012 Dionysis "dionyziz" Zindros <dionyziz@gmail.com>
+Copyright (C) 2008 - 2012 Dionysis "dionyziz" Zindros <dionyziz@gmail.com> and
+contributors
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in
